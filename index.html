@@ -4,29 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find a COVID Test Near Me</title>
+    <title>Map-A-Test: Find a COVID Testing Site Near Me</title>
 
     <!-- JQUERY css-->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <!-- FOUNDATION css-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css" crossorigin="anonymous">
-
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     
+    <!-- CUSTOM css-->
     <link rel="stylesheet" href="assets/style.css" />
-
-
-        <!-- JQUERY js-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
-
-    <script src="assets/script.js"></script>
-
- 
-
-
 
 
 </head>
@@ -34,48 +21,73 @@
 
 <body>
 
-    <ul class="menu align-center">
-        <li><a href="#">One</a></li>
-        <li><a href="#">Two</a></li>
-        <li><a href="#">Three</a></li>
-        <li><a href="#">Four</a></li>
-    </ul>
 
-
-
-    <div class="grid-x">
-        <div class="cell">full width cell</div>
-        <div class="cell">full width cell</div>
+  <!-- top nav bar -->
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <ul class="menu">
+          <li class="menu-text">
+            <img src="assets/images/test-map-logo.png"/>
+          </li>
+          <li>
+            <a href="#">About this Data</a>
+          </li>
+          <li><a href="#">Our Team</a></li>
+        </ul>
       </div>
-      <div class="grid-x">
-        <div class="cell small-6">6 cells</div>
-        <div class="cell small-6">6 cells</div>
+      <div class="top-bar-right">
+        <ul class="menu">
+          <li><input type="search" placeholder="Search by Zip"></li>
+          <li><button type="button" class="button">Search</button></li>
+        </ul>
       </div>
-      <div class="grid-x">
-        <div class="cell medium-6 large-4">12/6/4 cells</div>
-        <div class="cell medium-6 large-8">12/6/8 cells</div>
+    </div>
+
+
+    <!-- seaarch box -->
+    <div class="row grid-x align-center align-middle" id="location-search-wrapper">
+      <div class="cell medium-6 p20" id="location-search-box">
+        <h2>
+          Choose Your State
+        </h2>
+
+        <label>Select Your State
+          <select>
+            <option value="ca">California</option>
+            <option value="nv">Nevada</option>
+            <option value="al">Alabama</option>
+            <option value="ak">Alaska</option>
+          </select>
+        </label>
+
+        <label> Search by Zip
+          <input type="text" placeholder="enter zip code">
+        </label>
       </div>
-
-      <div id="map"></div>
-
+    </div>
 
 
+    <!-- map background -->
+    <div id="map"></div>
 
 
+
+    <!-- JQUERY js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
 
     <!-- FOUNDATION js -->
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js" crossorigin="anonymous"></script>
 
-    
+    <!-- CUSTOM JS-->
+    <script src="assets/script.js"></script>
 
-
-    
     <!--GOOGLE map -->
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn-EsceBwuoTW01nAWUbsPb0pl86wAWMY&callback=mapMaker&v=weekly"
-  ></script>
-  
-    <!-- src="" -->
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn-EsceBwuoTW01nAWUbsPb0pl86wAWMY&callback=mapMaker&v=weekly"
+    ></script>
+
     
 
 </body>

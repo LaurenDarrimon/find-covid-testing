@@ -1,11 +1,50 @@
-#map {
-    height: 100%;
-  }
-  
-  /* Optional: Makes the sample page fill the window. */
-  html,
-  body {
+/*declare color variables*/
+:root{
+    --tan: #F3C9A7;
+    --orange: #D2975C;
+    --green: #C8B953;
+    --blue: #9FB9C0;
+    --rose: #D38681;
+    --white: #f5f5f5;;
+    --black: #000;
+}
+
+html, body {
     height: 100%;
     margin: 0;
     padding: 0;
+}
+
+.top-bar {
+    z-index: 100;
+    position: relative;
+    background-color: var(--green);
   }
+  
+#location-search-box{
+    z-index: 100;
+    position: relative;
+}
+
+#location-search-box{
+    background-color: var(--blue);
+    color: var(--white);
+    border: 25px solid var(--green);
+    border-radius: 25px;
+    padding: 30px;
+}
+
+#location-search-wrapper{
+    height: calc(100% - 150px)
+}
+
+
+#map {
+    height: 100%;
+    position: absolute; 
+    top: 0; 
+    bottom: -200px; 
+    left: 0; 
+    right: 0; 
+    z-index: 0;
+}
