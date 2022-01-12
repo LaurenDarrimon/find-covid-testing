@@ -21,51 +21,56 @@
 
 <body>
 
-    <div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium">
-      <button class="menu-icon" type="button" data-toggle="example-menu"></button>
-      <div class="title-bar-title">Menu</div>
-    </div>
-    
-    <div class="top-bar" id="example-menu">
+
+  <!-- top nav bar -->
+    <div class="top-bar">
       <div class="top-bar-left">
-        <ul class="dropdown menu" data-dropdown-menu>
-          <li class="menu-text">Site Title</li>
-          <li class="has-submenu">
-            <a href="#0">One</a>
-            <ul class="submenu menu vertical" data-submenu>
-              <li><a href="#0">One</a></li>
-              <li><a href="#0">Two</a></li>
-              <li><a href="#0">Three</a></li>
-            </ul>
+        <ul class="menu">
+          <li class="menu-text">
+            <img src="assets/images/test-map-logo.png"/>
           </li>
-          <li><a href="#0">Two</a></li>
-          <li><a href="#0">Three</a></li>
+          <li>
+            <a href="#">About this Data</a>
+          </li>
+          <li><a href="#">Our Team</a></li>
         </ul>
       </div>
       <div class="top-bar-right">
         <ul class="menu">
-          <li><input type="search" placeholder="Search"></li>
+          <li><input type="search" placeholder="Search by Zip"></li>
           <li><button type="button" class="button">Search</button></li>
         </ul>
       </div>
     </div>
 
-    
 
+    <!-- seaarch box -->
+    <div class="row grid-x align-center align-middle" id="location-search-wrapper">
+      <div class="cell medium-6 p20" id="location-search-box">
+        <h2>
+          Choose Your State
+        </h2>
 
-      
-      <div class="row grid-x align-center align-middle" id="location-search-wrapper">
-        <div class="cell medium-6 large-4" id="location-search-box">
-          <h2>
-            Find Your Location
-          </h2>
-        </div>
+        <label>Select Your State
+          <select>
+            <option value="ca">California</option>
+            <option value="nv">Nevada</option>
+            <option value="al">Alabama</option>
+            <option value="ak">Alaska</option>
+          </select>
+        </label>
+
+        <label> Search by Zip
+          <input type="text" placeholder="enter zip code">
+        </label>
       </div>
+    </div>
 
 
+    <!-- map background -->
     <div id="map"></div>
 
-    
+
 
     <!-- JQUERY js-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
