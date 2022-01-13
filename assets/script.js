@@ -85,6 +85,7 @@ function mapMaker() {
     if (navigator.geolocation) {
       console.log("test");
 
+      //close the modal when popup appears to ask user to share location
       $(".reveal").foundation("close");
       console.log("test", $(".reveal"));
 
