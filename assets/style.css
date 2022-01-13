@@ -18,8 +18,14 @@ html, body {
 .top-bar {
     z-index: 100;
     position: relative;
-    background-color: var(--green);
+    background-color: var(--green) !important;
+    color: var--(white) !important;
   }
+
+.menu, .menu li, .menu li h1{
+    background-color: var(--green) !important;
+    color: var(--white);
+}
   
 #location-search-box{
     z-index: 100;
