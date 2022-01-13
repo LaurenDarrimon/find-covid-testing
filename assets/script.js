@@ -5,6 +5,10 @@ $(document).foundation();
 let covidApiKey = "K39YR7g51qETSXocQ0uyEDBxgxXWFZSILwgtqcrNaP8";
 let covidAppId = "ikc0ro0Fv33Mt3V90p6Y";
 
+let covidResponseData = {}; //initialize empty object that we will fill up with covid response data.
+let testLocations = [];
+let markers = []; //set markers to be an empty array to fill with all the marker info
+
 let covidApiUrl =
   "https://discover.search.hereapi.com/v1/discover?apikey=" +
   covidApiKey +
