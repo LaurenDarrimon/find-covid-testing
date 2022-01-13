@@ -63,6 +63,7 @@ function mapMaker() {
             map: map,
             position: pos,
           });
+          getCovidData();
         },
         () => {
           handleLocationError(true, infoWindow, map.getCenter());
