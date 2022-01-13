@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- JQUERY css-->
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+
+    <!-- FOUNDATION css-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="reveal" id="exampleModal1" data-reveal>
+      <h1>Awesome. I Have It.</h1>
+      <p class="lead">Your couch. It is mine.</p>
+      <p>
+        I'm a cool paragraph that lives inside of an even cooler modal. Wins!
+      </p>
+      <button
+        class="close-button"
+        data-close
+        aria-label="Close modal"
+        type="button"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <p>
+      <button class="button" data-open="exampleModal1">
+        Click me for a modal
+      </button>
+    </p>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+
+    <!-- FOUNDATION js -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript">
+      $(document).foundation();
+    </script>
+  </body>
+</html>
