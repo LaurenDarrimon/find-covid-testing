@@ -135,7 +135,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.open(map);
 }
 
-let mapStyleColors = [
+const mapStyleColors = [
   {
     elementType: "labels",
     stylers: [
