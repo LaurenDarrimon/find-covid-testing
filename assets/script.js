@@ -44,31 +44,29 @@ function mapMaker() {
 
   // Add open modal button and position it at the bottom
   const locationBottomBtn = document.createElement("button");
-  locationBottomBtn.textContent = "Open Modal";
+  locationBottomBtn.textContent = "Get Tested";
   locationBottomBtn.classList.add("button");
-  locationBottomBtn.dataset.open = "exampleModal1";
+  locationBottomBtn.dataset.open = "my-modal";
   map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(
     locationBottomBtn
   );
 
   const showCurrentLocation = document.getElementById("my-location");
-
-  //   const locationButton = document.createElement("button");
-  //   locationButton.classList.add("button");
-  //   locationButton.textContent = "Open Modal";
-  //   locationButton.dataset.open = "exampleModal1";
-  //   map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(locationButton);
-
   showCurrentLocation.addEventListener("click", () => {
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
       console.log("test");
+
+      $(".reveal").foundation("close");
+      console.log("test", $(".reveal"));
+
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const pos = {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           };
+          console.log("current position", pos);
 
           infoWindow.setPosition(pos);
           infoWindow.setContent("My location");
