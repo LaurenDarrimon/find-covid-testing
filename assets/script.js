@@ -1,12 +1,3 @@
-// Upon page load, get the users location
-// if location services is enabled, it will show a map of their area
-// if location services are not enabled, it will show a generic map with a box that will allow them to 1 of 12 states
-// Next, the user will input their zip code
-// CHECK: does google take zip code as a parameter or do we need to convert zip to lat/lon
-// We'll store the users location as lat/lon in a global variable
-// We'll take the users lat/lon and input it into the COVID api/url
-// The COVID api will return testing locations around that lat/lon
-
 // important for being able to use foundation js functions
 $(document).foundation();
 
@@ -17,7 +8,11 @@ let covidAppId = "ikc0ro0Fv33Mt3V90p6Y";
 let covidApiUrl =
   "https://discover.search.hereapi.com/v1/discover?apikey=" +
   covidApiKey +
-  "&q=Covid&at=30.22,-92.02&limit=10";
+  "&q=Covid&at=" +
+  userLat +
+  "," +
+  userLon +
+  " &limit=10";
 
 function getCovidData() {
   $.ajax({
@@ -33,13 +28,19 @@ getCovidData();
 //Initialize and add the map
 
 let map, infoWindow, geocoder;
+let userLat;
+let userLon;
 
 //function to handle display lat and lon from address
 function codeAddress(address) {
   geocoder.geocode({ address: address }, function (results, status) {
-    console.log("results", results);
     if (status == google.maps.GeocoderStatus.OK) {
       //In this case it creates a marker, but you can get the lat and lng from the location.LatLng
+
+      userLat = results[0].geometry.location.lat();
+      userLon = results[0].geometry.location.lng();
+
+      console.log(results);
       map.setCenter(results[0].geometry.location);
       var marker = new google.maps.Marker({
         map: map,
