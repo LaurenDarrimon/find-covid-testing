@@ -14,10 +14,17 @@ $(document).foundation();
 let covidApiKey = "K39YR7g51qETSXocQ0uyEDBxgxXWFZSILwgtqcrNaP8";
 let covidAppId = "ikc0ro0Fv33Mt3V90p6Y";
 
+let userLat;
+let userLon;
+
 let covidApiUrl =
   "https://discover.search.hereapi.com/v1/discover?apikey=" +
   covidApiKey +
-  "&q=Covid&at=30.22,-92.02&limit=10";
+  "&q=Covid&at=" +
+  userLat +
+  "," +
+  userLon +
+  "&limit=10";
 
 function getCovidData() {
   $.ajax({
@@ -37,7 +44,9 @@ let map, infoWindow, geocoder;
 //function to handle display lat and lon from address
 function codeAddress(address) {
   geocoder.geocode({ address: address }, function (results, status) {
-    console.log("results", results);
+    userLat = results[0].geometry.location.lat();
+    userLon = results[0].geometry.location.lng();
+
     if (status == google.maps.GeocoderStatus.OK) {
       //In this case it creates a marker, but you can get the lat and lng from the location.LatLng
       map.setCenter(results[0].geometry.location);
