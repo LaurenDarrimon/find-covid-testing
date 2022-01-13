@@ -14,7 +14,7 @@ const covidAppId = "ikc0ro0Fv33Mt3V90p6Y";
 let userLat = 0;
 let userLon = 0;
 
-let covidApiUrl = "https://discover.search.hereapi.com/v1/discover?apikey=" + covidApiKey + "&q=Covid&at=30.22,-92.02&limit=10"
+let covidApiUrl = "https://discover.search.hereapi.com/v1/discover?apikey=" + covidApiKey + "&q=Covid&at=38.439701,-122.715637&limit=10"
 
 let covidResponseData = {}; //initialize empty object that we will fill up with covid response data. 
 let testLocations = [];
@@ -251,7 +251,7 @@ function renderMarkers(testLocations){
     console.log(testLocations) 
 
     map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: 30.22, lng: -92.02 },
+        center: { lat: 38.439701, lng: -122.715637 },
         zoom: 8,
         styles: mapStyleColors,
       });
@@ -265,6 +265,7 @@ function renderMarkers(testLocations){
         }; 
 
         console.log(locations);
+        console.log(testLocations[i].title);
     
         //create a new marker google maps marker for each testing site's location object
         markers[i] = new google.maps.Marker(
@@ -272,16 +273,33 @@ function renderMarkers(testLocations){
             position: locations,
             map: map,
             title: testLocations[i].title,
-            //custom_property: testLocations[i].contacts[0].www[0]['value'];
+            custom_property: testLocations[i].contacts[0].www[0]['value'],
             }
-        );  
+        ); 
+
+
+        //every time a marker is rendered, add event listener, listening for clicks on any of the markers. 
+        markers[i].addListener(
+            //when marker click happens
+            "click",
+            //show an info window 
+            function(){
+                let details = new google.maps.InfoWindow(
+                    {
+                        content: this.title + "\n" + this.custom_property
+                        
+                    } 
+                );
+                details.open(map,this);
+            }
+            );
     }
 
 }     
 
 function mapMaker() {
     map = new google.maps.Map(document.getElementById("map"), {
-      center: { lat: 30.22, lng: -92.02 },
+      center: { lat: 38.439701, lng: -122.715637 },
       zoom: 8,
       styles: mapStyleColors,
     });
@@ -291,23 +309,7 @@ function mapMaker() {
 
            
 
-         /*   //add event listener, listening for clicks on any of the markers. 
-            markers[n].addListener(
-            //when click happens....
-            "click",
-            //do this function
-            function(){
-                var details = new google.maps.InfoWindow(
-                    {
-                        content: this.custom_property
-                    } 
-                );
-                details.open(map,this);
-            }
-            );
 
-
-} */
 
 
 getCovidData();
