@@ -8,40 +8,22 @@
 // The COVID api will return testing locations around that lat/lon
 
 
-//test COVID api
-let covidApiKey = "K39YR7g51qETSXocQ0uyEDBxgxXWFZSILwgtqcrNaP8";
-let covidAppId = "ikc0ro0Fv33Mt3V90p6Y";
+//get COVID testing site data
+const covidApiKey = "K39YR7g51qETSXocQ0uyEDBxgxXWFZSILwgtqcrNaP8";  
+const covidAppId = "ikc0ro0Fv33Mt3V90p6Y";
+let userLat = 0;
+let userLon = 0;
 
 let covidApiUrl = "https://discover.search.hereapi.com/v1/discover?apikey=" + covidApiKey + "&q=Covid&at=30.22,-92.02&limit=10"
 
-function getCovidData(){
-        
-            $.ajax({
-                url: covidApiUrl,
-                method: 'GET',
-            }).then(function (response) {
-    
-                console.log(response) 
-            });
-};
-
-getCovidData();
-
+let covidResponseData = {}; //initialize empty object that we will fill up with covid response data. 
+let testLocations = [];
+let markers = []; //set markers to be an empty array to fill with all the marker info
 
 //Initialize and add the map
-
 let map;
 
-function mapMaker() {
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -34.397, lng: 150.644 },
-    zoom: 8,
-    styles: mapStyleColors,
-  });
-}
-
-
-let mapStyleColors = [
+const mapStyleColors = [
     {
         "elementType": "labels",
         "stylers": [
@@ -241,4 +223,92 @@ let mapStyleColors = [
     {},
     {},
     {}
-]
+] 
+
+
+function getCovidData(){  
+    $.ajax({
+        url: covidApiUrl,
+        method: 'GET',
+    }).then(function (response) {
+        
+        testLocations = response.items;
+
+        renderMarkers(testLocations);
+        displayCovidData(testLocations);
+    });
+};
+
+
+function displayCovidData(testLocations){
+  //console.log("function is running to display COVID data")
+  //console.log(testLocations)
+  
+}
+
+function renderMarkers(testLocations){
+    console.log("function is running to render markers")
+    console.log(testLocations) 
+
+    map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 30.22, lng: -92.02 },
+        zoom: 8,
+        styles: mapStyleColors,
+      });
+    
+      for (let i=0; i < testLocations.length; i++){
+                
+        //create a local object for each pair of lat/lon coordinates, pulled from the response data at iterative index
+         var locations = {
+            lat: testLocations[i].position['lat'],
+            lng: testLocations[i].position['lng']
+        }; 
+
+        console.log(locations);
+    
+        //create a new marker google maps marker for each testing site's location object
+        markers[i] = new google.maps.Marker(
+            {
+            position: locations,
+            map: map,
+            title: testLocations[i].title,
+            //custom_property: testLocations[i].contacts[0].www[0]['value'];
+            }
+        );  
+    }
+
+}     
+
+function mapMaker() {
+    map = new google.maps.Map(document.getElementById("map"), {
+      center: { lat: 30.22, lng: -92.02 },
+      zoom: 8,
+      styles: mapStyleColors,
+    });
+  }
+
+
+
+           
+
+         /*   //add event listener, listening for clicks on any of the markers. 
+            markers[n].addListener(
+            //when click happens....
+            "click",
+            //do this function
+            function(){
+                var details = new google.maps.InfoWindow(
+                    {
+                        content: this.custom_property
+                    } 
+                );
+                details.open(map,this);
+            }
+            );
+
+
+} */
+
+
+getCovidData();
+
