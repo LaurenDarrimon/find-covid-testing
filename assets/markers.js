@@ -232,6 +232,7 @@ function getCovidData(){
         method: 'GET',
     }).then(function (response) {
         
+        console.log(response)
         testLocations = response.items;
 
         renderMarkers(testLocations);
@@ -286,8 +287,7 @@ function renderMarkers(testLocations){
             function(){
                 let details = new google.maps.InfoWindow(
                     {
-                        content: this.title + "\n" + this.custom_property
-                        
+                        content: this.title + "\n" + this.custom_property  
                     } 
                 );
                 details.open(map,this);
@@ -297,19 +297,13 @@ function renderMarkers(testLocations){
 
 }     
 
-function mapMaker() {
+function mapMaker() {  //placeholdrt map that shows on page load
     map = new google.maps.Map(document.getElementById("map"), {
       center: { lat: 38.439701, lng: -122.715637 },
       zoom: 8,
       styles: mapStyleColors,
     });
   }
-
-
-
-           
-
-
 
 
 getCovidData();
