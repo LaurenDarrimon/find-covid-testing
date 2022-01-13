@@ -20,15 +20,6 @@ let covidResponseData = {}; //initialize empty object that we will fill up with 
 let testLocations = [];
 let markers = []; //set markers to be an empty array to fill with all the marker info
 
-let covidApiUrl =
-  "https://discover.search.hereapi.com/v1/discover?apikey=" +
-  covidApiKey +
-  "&q=Covid&at=" +
-  userLat +
-  "," +
-  userLon +
-  "&limit=10";
-
 // get current location
 function mapMaker() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -98,11 +89,19 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 
 function getCovidData() {
   $.ajax({
-    url: covidApiUrl,
+    url:
+      "https://discover.search.hereapi.com/v1/discover?apikey=" +
+      covidApiKey +
+      "&q=Covid&at=" +
+      userLat +
+      "," +
+      userLon +
+      "&limit=10",
     method: "GET",
   }).then(function (response) {
     console.log(response);
     testLocations = response.items;
+    console.log("i am getting covid data from address");
     renderMarkers(testLocations);
   });
 }
@@ -169,9 +168,9 @@ function codeAddress(address) {
     } else {
       alert("Geocode was not successful for the following reason: " + status);
     }
+    getCovidData();
   });
   $(".reveal").foundation("close");
-  getCovidData();
 }
 
 $("#state-location").on("click", function () {
