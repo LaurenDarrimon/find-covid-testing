@@ -1,76 +1,100 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Map-A-Test: Find a COVID Testing Site Near Me</title>
 
     <!-- JQUERY css-->
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
 
     <!-- FOUNDATION css-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css" crossorigin="anonymous">
-    
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css"
+      crossorigin="anonymous"
+    />
+
     <!-- CUSTOM css-->
     <link rel="stylesheet" href="assets/style.css" />
+  </head>
 
-
-</head>
-
-
-<body>
-
-
-  <!-- top nav bar -->
+  <body>
+    <!-- top nav bar -->
     <div class="top-bar">
-      <div class="top-bar-left">
-        <ul class="menu">
-          <li class="menu-text">
-            <img src="assets/images/test-map-logo.png"/>
-          </li>
-          <li>
-            <a href="#">About this Data</a>
-          </li>
-          <li><a href="#">Our Team</a></li>
-        </ul>
-      </div>
-      <div class="top-bar-right">
-        <ul class="menu">
-          <li><input type="search" placeholder="Search by Zip"></li>
-          <li><button type="button" class="button">Search</button></li>
-        </ul>
-      </div>
+      <ul class="menu align-middle">
+        <li class="menu-text align-middle">
+          <img src="assets/images/test-map-logo.png" />
+        </li>
+        <li>
+          <a href="#">About this Data</a>
+        </li>
+        <li><a href="#">Our Team</a></li>
+      </ul>
+      <ul class="menu align-center">
+        <li>
+          <h1>Find a COVID Testing Site</h1>
+        </li>
+      </ul>
+      <ul class="menu">
+        <li><input type="search" placeholder="Search by Zip" /></li>
+        <li><button type="button" class="button">Search</button></li>
+      </ul>
     </div>
 
+        <!-- Test Site Information  -->
+        <div id="box">
+          <h4> Testing Site Info:</h3>
+            <br>
+          <div id="site-info">
+            <p>Place #1</p>
+            <p>Place 1 info</p>
+            <p>More info...</p>
+          </div>
+        </div>
 
-    <!-- seaarch box -->
-    <div class="row grid-x align-center align-middle" id="location-search-wrapper">
-      <div class="cell medium-6 p20" id="location-search-box">
-        <h2>
-          Choose Your State
-        </h2>
+    <div class="reveal" id="my-modal" data-reveal>
+      <!-- <-- seaarch box -->
+      <div
+        class="row grid-x align-center align-middle"
+        id="location-search-wrapper"
+      >
+        <div class="cell medium-6 p20" id="location-search-box">
+          <h2>Choose Your State</h2>
 
-        <label>Select Your State
-          <select>
-            <option value="ca">California</option>
-            <option value="nv">Nevada</option>
-            <option value="al">Alabama</option>
-            <option value="ak">Alaska</option>
-          </select>
-        </label>
+          <label
+            >Select Your State
+            <select id="state">
+              <option value="ca">California</option>
+              <option value="nv">Nevada</option>
+              <option value="al">Alabama</option>
+              <option value="ak">Alaska</option></select
+            ><button class="button" id="state-location">Show</button>
+          </label>
 
-        <label> Search by Zip
-          <input type="text" placeholder="enter zip code">
-        </label>
+          <br />
+          <label>
+            Search by Zip
+            <input type="text" placeholder="enter zip code" id="zip" /><button
+              class="button"
+              id="zip-location"
+            >
+              Show
+            </button>
+          </label>
+
+          <br />
+          <button class="button" id="my-location">Show current location</button>
+        </div>
       </div>
     </div>
-
 
     <!-- map background -->
     <div id="map"></div>
-
-
 
     <!-- JQUERY js-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -78,17 +102,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
 
     <!-- FOUNDATION js -->
-    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js"
+      crossorigin="anonymous"
+    ></script>
 
     <!-- CUSTOM JS-->
     <script src="assets/script.js"></script>
 
     <!--GOOGLE map -->
-    <script async defer
+    <script
+      async
+      defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn-EsceBwuoTW01nAWUbsPb0pl86wAWMY&callback=mapMaker&v=weekly"
     ></script>
-
-    
-
-</body>
+  </body>
 </html>
+
+
+

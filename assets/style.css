@@ -1,54 +1,90 @@
-/*declare color variables*/
-:root{
-    --tan: #F3C9A7;
-    --orange: #D2975C;
-    --green: #C8B953;
-    --blue: #9FB9C0;
-    --rose: #D38681;
-    --white: #f5f5f5;;
-    --black: #000;
+:root {
+  --tan: #f3c9a7;
+  --orange: #d2975c;
+  --green: #c8b953;
+  --blue: #9fb9c0;
+  --rose: #d38681;
+  --white: #f5f5f5;
+  --black: #000;
 }
 
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .top-bar {
-    z-index: 100;
-    position: relative;
-    background-color: var(--green);
-  }
-  
-#location-search-box{
-    z-index: 100;
-    position: relative;
+  z-index: 100;
+  position: relative;
+  background-color: var(--green) !important;
+  color: var--(white) !important;
 }
 
-#location-search-box{
-    background-color: var(--blue);
-    color: var(--white);
-    border: 25px solid var(--green);
-    border-radius: 25px;
-    padding: 30px;
+.menu,
+.menu li,
+.menu li h1 {
+  background-color: var(--green) !important;
+  color: var(--white);
 }
 
-#location-search-wrapper{
-    height: calc(100% - 150px)
+#location-search-box {
+  z-index: 100;
+  position: relative;
 }
-  
-  
 
+.custom-map-control-button {
+  z-index: 100;
+  position: relative;
+}
 
+#location-search-box {
+  background-color: var(--blue);
+  color: var(--white);
+  border: 25px solid var(--green);
+  border-radius: 25px;
+  padding: 30px;
+  width: 100%;
+  height: 100%;
+}
 
+#location-search-wrapper {
+  height: calc(100% - 150px);
+}
+
+#box {
+  /* @include ( */
+  z-index: 100;
+  position: relative;
+  background-color: var(--blue);
+  border: solid 5px var--(white);
+  height: 50%;
+  width: 20%;
+  margin-top: 30px;
+  margin: 8px;
+  color: black;
+  padding: 20px;
+  adjust: true;
+  /* ); */
+}
+
+#side-info {
+  z-index: 100;
+  position: relative;
+  height: 90%;
+  width: 90%;
+  display: block;
+  border: solid 2px orange;
+  background-color: var--(white);
+}
 
 #map {
-    height: 100%;
-    position: absolute; 
-    top: 0; 
-    bottom: -200px; 
-    left: 0; 
-    right: 0; 
-    z-index: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: -200px;
+  left: 0;
+  right: 0;
+  z-index: 0;
 }
