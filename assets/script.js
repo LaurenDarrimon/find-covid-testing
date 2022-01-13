@@ -36,9 +36,8 @@ let map, infoWindow, geocoder;
 
 //function to handle display lat and lon from address
 function codeAddress() {
-  //In this case it gets the address from an element on the page, but obviously you  could just pass it to the method instead
-  // var address = document.getElementById( 'address' ).value;
-  address = "95117";
+  var address = document.getElementById("address").value;
+  //   address = "95117";
 
   geocoder.geocode({ address: address }, function (results, status) {
     console.log("results", results);
@@ -92,7 +91,7 @@ function mapMaker() {
           console.log("current position", pos);
 
           map.setCenter(pos);
-
+          //mark current location on map
           var marker = new google.maps.Marker({
             map: map,
             position: pos,
