@@ -16,6 +16,9 @@ let covidAppId = "ikc0ro0Fv33Mt3V90p6Y";
 
 let userLat;
 let userLon;
+let covidResponseData = {}; //initialize empty object that we will fill up with covid response data.
+let testLocations = [];
+let markers = []; //set markers to be an empty array to fill with all the marker info
 
 let covidApiUrl =
   "https://discover.search.hereapi.com/v1/discover?apikey=" +
@@ -26,51 +29,7 @@ let covidApiUrl =
   userLon +
   "&limit=10";
 
-function getCovidData() {
-  $.ajax({
-    url: covidApiUrl,
-    method: "GET",
-  }).then(function (response) {
-    console.log(response);
-  });
-}
-
-getCovidData();
-
-//Initialize and add the map
-
-let map, infoWindow, geocoder;
-
-//function to handle display lat and lon from address
-function codeAddress(address) {
-  geocoder.geocode({ address: address }, function (results, status) {
-    userLat = results[0].geometry.location.lat();
-    userLon = results[0].geometry.location.lng();
-
-    if (status == google.maps.GeocoderStatus.OK) {
-      //In this case it creates a marker, but you can get the lat and lng from the location.LatLng
-      map.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-        map: map,
-        position: results[0].geometry.location,
-      });
-    } else {
-      alert("Geocode was not successful for the following reason: " + status);
-    }
-  });
-  $(".reveal").foundation("close");
-}
-
-$("#state-location").on("click", function () {
-  var address = $("#state").val();
-  codeAddress(address);
-});
-
-$("#zip-location").on("click", function () {
-  var address = $("#zip").val();
-  codeAddress(address);
-});
-
+// get current location
 function mapMaker() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -34.397, lng: 150.644 },
@@ -92,11 +51,9 @@ function mapMaker() {
   const showCurrentLocation = document.getElementById("my-location");
   showCurrentLocation.addEventListener("click", () => {
     if (navigator.geolocation) {
-      console.log("test");
-
       //close the modal when popup appears to ask user to share location
       $(".reveal").foundation("close");
-      console.log("test", $(".reveal"));
+      // console.log("test", $(".reveal"));
 
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -106,6 +63,9 @@ function mapMaker() {
           };
           console.log("current position", pos);
 
+          userLat = pos.lat;
+          userLon = pos.lng;
+          // console.log("current user lat/lng " + userLat + userLon);
           map.setCenter(pos);
           //mark current location on map
           var marker = new google.maps.Marker({
@@ -133,7 +93,96 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
       : "Error: Your browser doesn't support geolocation."
   );
   infoWindow.open(map);
+  getCovidData();
 }
+
+function getCovidData() {
+  $.ajax({
+    url: covidApiUrl,
+    method: "GET",
+  }).then(function (response) {
+    console.log(response);
+    testLocations = response.items;
+    renderMarkers(testLocations);
+  });
+}
+function renderMarkers(testLocations) {
+  console.log("function is running to render markers");
+  console.log(testLocations);
+
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: userLat, lng: userLon },
+    zoom: 8,
+    styles: mapStyleColors,
+  });
+
+  for (let i = 0; i < testLocations.length; i++) {
+    //create a local object for each pair of lat/lon coordinates, pulled from the response data at iterative index
+    var locations = {
+      lat: testLocations[i].position["lat"],
+      lng: testLocations[i].position["lng"],
+    };
+
+    console.log(locations);
+    console.log(testLocations[i].title);
+
+    //create a new marker google maps marker for each testing site's location object
+    markers[i] = new google.maps.Marker({
+      position: locations,
+      map: map,
+      title: testLocations[i].title,
+      custom_property: testLocations[i].contacts[0].www[0]["value"],
+    });
+
+    //every time a marker is rendered, add event listener, listening for clicks on any of the markers.
+    markers[i].addListener(
+      //when marker click happens
+      "click",
+      //show an info window
+      function () {
+        let details = new google.maps.InfoWindow({
+          content: this.title + "\n" + this.custom_property,
+        });
+        details.open(map, this);
+      }
+    );
+  }
+}
+
+//Initialize and add the map
+
+let map, infoWindow, geocoder;
+
+//function to handle display lat and lon from address
+function codeAddress(address) {
+  geocoder.geocode({ address: address }, function (results, status) {
+    userLat = results[0].geometry.location.lat();
+    userLon = results[0].geometry.location.lng();
+    console.log("lat/lng from function" + userLat + userLon);
+    if (status == google.maps.GeocoderStatus.OK) {
+      //In this case it creates a marker, but you can get the lat and lng from the location.LatLng
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+        map: map,
+        position: results[0].geometry.location,
+      });
+    } else {
+      alert("Geocode was not successful for the following reason: " + status);
+    }
+  });
+  $(".reveal").foundation("close");
+  getCovidData();
+}
+
+$("#state-location").on("click", function () {
+  var address = $("#state").val();
+  codeAddress(address);
+});
+
+$("#zip-location").on("click", function () {
+  var address = $("#zip").val();
+  codeAddress(address);
+});
 
 const mapStyleColors = [
   {
