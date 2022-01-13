@@ -35,10 +35,7 @@ getCovidData();
 let map, infoWindow, geocoder;
 
 //function to handle display lat and lon from address
-function codeAddress() {
-  var address = document.getElementById("address").value;
-  //   address = "95117";
-
+function codeAddress(address) {
   geocoder.geocode({ address: address }, function (results, status) {
     console.log("results", results);
     if (status == google.maps.GeocoderStatus.OK) {
@@ -52,9 +49,18 @@ function codeAddress() {
       alert("Geocode was not successful for the following reason: " + status);
     }
   });
+  $(".reveal").foundation("close");
 }
 
-$("#zip-location").on("click", codeAddress);
+$("#state-location").on("click", function () {
+  var address = $("#state").val();
+  codeAddress(address);
+});
+
+$("#zip-location").on("click", function () {
+  var address = $("#zip").val();
+  codeAddress(address);
+});
 
 function mapMaker() {
   map = new google.maps.Map(document.getElementById("map"), {
