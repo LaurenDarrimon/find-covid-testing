@@ -32,7 +32,30 @@ getCovidData();
 
 //Initialize and add the map
 
-let map, infoWindow;
+let map, infoWindow, geocoder;
+
+//function to handle display lat and lon from address
+function codeAddress() {
+  //In this case it gets the address from an element on the page, but obviously you  could just pass it to the method instead
+  // var address = document.getElementById( 'address' ).value;
+  address = "95117";
+
+  geocoder.geocode({ address: address }, function (results, status) {
+    console.log("results", results);
+    if (status == google.maps.GeocoderStatus.OK) {
+      //In this case it creates a marker, but you can get the lat and lng from the location.LatLng
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+        map: map,
+        position: results[0].geometry.location,
+      });
+    } else {
+      alert("Geocode was not successful for the following reason: " + status);
+    }
+  });
+}
+
+$("#zip-location").on("click", codeAddress);
 
 function mapMaker() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -40,9 +63,10 @@ function mapMaker() {
     zoom: 8,
     styles: mapStyleColors,
   });
+  geocoder = new google.maps.Geocoder();
   infoWindow = new google.maps.InfoWindow();
 
-  // Add open modal button and position it at the bottom
+  // Add Get Tested button and position it at the bottom
   const locationBottomBtn = document.createElement("button");
   locationBottomBtn.textContent = "Get Tested";
   locationBottomBtn.classList.add("button");
@@ -53,7 +77,6 @@ function mapMaker() {
 
   const showCurrentLocation = document.getElementById("my-location");
   showCurrentLocation.addEventListener("click", () => {
-    // Try HTML5 geolocation.
     if (navigator.geolocation) {
       console.log("test");
 
@@ -68,10 +91,12 @@ function mapMaker() {
           };
           console.log("current position", pos);
 
-          infoWindow.setPosition(pos);
-          infoWindow.setContent("My location");
-          infoWindow.open(map);
           map.setCenter(pos);
+
+          var marker = new google.maps.Marker({
+            map: map,
+            position: pos,
+          });
         },
         () => {
           handleLocationError(true, infoWindow, map.getCenter());
