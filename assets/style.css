@@ -104,6 +104,7 @@ body {
     border: 25px solid #d38681;
     border-radius: 15px;
     background-image: "url('assets/images/test-graphic.png')";
+    transform: translate(0, -30%);
 }
 
  /* add shadow to to outer picture on hover*/
