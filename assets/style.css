@@ -58,22 +58,22 @@ body {
   position: relative;
   background-color: var(--blue);
   border: solid 10px #c8b953;
-  height: 50%;
+  height: 100%;
   width: 20%;
   margin: 20px;
   color: black;
   padding: 20px;
 }
-/* 
-#side-info {
+
+.site-info {
   z-index: 100;
   position: relative;
-  height: 90%;
+  height: 100%;
   width: 90%;
   display: block;
   border: solid 2px orange;
   background-color: var--(white);
-} */
+}
 
 #map {
   height: 100%;
