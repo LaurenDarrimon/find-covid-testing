@@ -101,11 +101,30 @@ function getCovidData() {
     method: "GET",
   }).then(function (response) {
     console.log(response);
+
     testLocations = response.items;
+    let htmlTags = ``
+    console.log(testLocations);
+    for (let i = 0; i < 4; i++) {
+      htmlTags += `            
+    <div class="site-info">
+      <p class="title"> ${testLocations[i].title.split(":")[1]}</p>
+      <p class="address">${testLocations[i].address.houseNumber} 
+      ${testLocations[i].address.street} 
+      ${testLocations[i].address.city} ,
+      ${testLocations[i].address.state} 
+      ${testLocations[i].address.postalCode}
+      </p>
+      <p class="phone-number"> ${testLocations[i].contacts[0].phone[0].value}</p>
+    </div>`
+    } 
+    $("#site-info-wrapper").html(htmlTags)
+
     console.log("i am getting covid data from address");
     renderMarkers(testLocations);
   });
 }
+
 function renderMarkers(testLocations) {
   console.log("function is running to render markers");
   console.log(testLocations);
