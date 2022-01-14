@@ -42,7 +42,7 @@ function mapMaker() {
 
     //displaying a div with an image in it instead of a button, as it's such a central focus
     const locationBottomBtn = document.createElement("div");
-    locationBottomBtn.innerHTML = "<img src=\"assets/images/test-graphic.png\" width=\"200px\" height=\"200px\">";
+    locationBottomBtn.innerHTML = "<img src=\"assets/images/test-graphic.png\" width=\"150px\" height=\"150px\">";
     locationBottomBtn.setAttribute('id', "get-tested-button"); 
     //add class for addition styling in css
     locationBottomBtn.classList.add("div");
