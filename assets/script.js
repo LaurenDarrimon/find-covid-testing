@@ -108,22 +108,21 @@ function getCovidData() {
     for (let i = 0; i < 4; i++) {
       htmlTags += `            
     <div class="site-info">
-      <p class="title"> ${testLocations[i].title.split(":")[1]}</p>
-      <p class="address">${testLocations[i].address.houseNumber} 
-      ${testLocations[i].address.street} 
-      ${testLocations[i].address.city} ,
-      ${testLocations[i].address.state} 
-      ${testLocations[i].address.postalCode}
-      </p>
+      <p class="title"><strong> ${testLocations[i].title.split(":")[1]}</strong></p>
       <p class="phone-number"> ${testLocations[i].contacts[0].phone[0].value}</p>
     </div>`
     } 
     $("#site-info-wrapper").html(htmlTags)
 
-    console.log("i am getting covid data from address");
     renderMarkers(testLocations);
   });
 }
+// removed this because it is making the div too long
+      // ${testLocations[i].address.street} 
+      // <p class="address">${testLocations[i].address.houseNumber} 
+      // ${testLocations[i].address.city} ,
+      // ${testLocations[i].address.state} 
+      // ${testLocations[i].address.postalCode}</p>
 
 function renderMarkers(testLocations) {
   console.log("function is running to render markers");
