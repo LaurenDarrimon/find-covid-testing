@@ -58,11 +58,13 @@ body {
   position: relative;
   background-color: var(--blue);
   border: solid 10px #c8b953;
-  height: 100%;
+  height: 60%;
   width: 20%;
   margin: 20px;
   color: black;
   padding: 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .site-info {
@@ -71,7 +73,9 @@ body {
   height: 100%;
   width: 90%;
   display: block;
-  border: solid 2px orange;
+  border: solid 2px white;
+  margin: 2px;
+  padding: 1px;
   background-color: var--(white);
 }
 
