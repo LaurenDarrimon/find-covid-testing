@@ -30,14 +30,27 @@ function mapMaker() {
   geocoder = new google.maps.Geocoder();
   infoWindow = new google.maps.InfoWindow();
 
+
   // Add Get Tested button and position it at the bottom
-  const locationBottomBtn = document.createElement("button");
+ /* const locationBottomBtn = document.createElement("button");
   locationBottomBtn.textContent = "Get Tested";
   locationBottomBtn.classList.add("button");
   locationBottomBtn.dataset.open = "my-modal";
   map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(
+    locationBottomBtn */
+
+
+    //displaying a div with an image in it instead of a button, as it's such a central focus
+    const locationBottomBtn = document.createElement("div");
+    locationBottomBtn.innerHTML = "<img src=\"assets/images/test-graphic.png\" width=\"200px\" height=\"200px\">";
+    locationBottomBtn.setAttribute('id', "get-tested-button"); 
+    //add class for addition styling in css
+    locationBottomBtn.classList.add("div");
+    locationBottomBtn.dataset.open = "my-modal";
+    //clicking on div will open the search modal
+     map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(
     locationBottomBtn
-  );
+    ); 
 
   const showCurrentLocation = document.getElementById("my-location");
   showCurrentLocation.addEventListener("click", () => {
