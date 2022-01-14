@@ -20,7 +20,13 @@ let covidResponseData = {}; //initialize empty object that we will fill up with 
 let testLocations = [];
 let markers = []; //set markers to be an empty array to fill with all the marker info
 
-// get current location
+//Initialize and add the map
+let map, infoWindow, geocoder;
+
+
+// GET CURRENT LOCATION & DRAW MAP
+//This function is called from the script tag in the html via Google Maps API's callback function
+//As soon as the data is retrived, Google Maps API will call this function.
 function mapMaker() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -34.397, lng: 150.644 },
@@ -30,15 +36,7 @@ function mapMaker() {
   geocoder = new google.maps.Geocoder();
   infoWindow = new google.maps.InfoWindow();
 
-  // Add Get Tested button and position it at the bottom
-  /* const locationBottomBtn = document.createElement("button");
-  locationBottomBtn.textContent = "Get Tested";
-  locationBottomBtn.classList.add("button");
-  locationBottomBtn.dataset.open = "my-modal";
-  map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(
-    locationBottomBtn */
-
-  //displaying a div with an image in it instead of a button, as it's such a central focus
+  //displaying a div with an image for a button as it's such a central focus
   const locationBottomBtn = document.createElement("div");
   locationBottomBtn.innerHTML =
     '<img src="assets/images/test-graphic.png" width="150px" height="150px">';
@@ -89,6 +87,7 @@ function mapMaker() {
   });
 }
 
+//If geolocation fails 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
   infoWindow.setContent(
@@ -100,6 +99,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   getCovidData();
 }
 
+//API Call to get COVID data 
 function getCovidData() {
   $.ajax({
     url:
@@ -115,25 +115,33 @@ function getCovidData() {
     console.log(response);
 
     testLocations = response.items;
-    let htmlTags = ``;
+  
     console.log(testLocations);
-    for (let i = 0; i < 4; i++) {
-      htmlTags += `            
-    <div class="site-info">
-      <p class="title"><strong> ${
-        testLocations[i].title.split(":")[1]
-      }</strong></p>
-      <p class="phone-number"> ${
-        testLocations[i].contacts[0].phone[0].value
-      }</p>
-    </div>`;
-    }
-    $("#site-info-wrapper").html(htmlTags);
 
+    displayLocationList(testLocations);
     renderMarkers(testLocations);
   });
 }
 
+//RENDER LIST  - Feed the COVID Data to a function to display the sidebar list of locations
+function displayLocationList(testLocations){
+  let htmlTags = ``;
+
+  for (let i = 0; i < 4; i++) {
+    htmlTags += `            
+  <div class="site-info">
+    <p class="title"><strong> ${
+      testLocations[i].title.split(":")[1]
+    }</strong></p>
+    <p class="phone-number"> ${
+      testLocations[i].contacts[0].phone[0].value
+    }</p>
+  </div>`;
+  }
+  $("#site-info-wrapper").html(htmlTags);
+}
+
+//RENDER MARKERS Feed COVID data to goople map object to draw markers & info windows
 function renderMarkers(testLocations) {
   console.log("function is running to render markers");
   console.log(testLocations);
@@ -177,9 +185,6 @@ function renderMarkers(testLocations) {
   }
 }
 
-//Initialize and add the map
-
-let map, infoWindow, geocoder;
 
 //function to handle display lat and lon from address
 function codeAddress(address) {
@@ -202,21 +207,26 @@ function codeAddress(address) {
   $(".reveal").foundation("close");
 }
 
+
+// Add event listener to state button
 $("#state-location").on("click", function () {
   var address = $("#state").val();
   codeAddress(address);
 });
 
+// Add event listener to zip button
 $("#zip-location").on("click", function () {
   var address = $("#zip").val();
   codeAddress(address);
 });
 
+// Add event listener to zip button in top nav bar 
 $("#search-zip").on("click", function () {
   var address = $("#zip-text").val();
   codeAddress(address);
 });
 
+//Map stying from Snazzy Maps 
 const mapStyleColors = [
   {
     elementType: "labels",
@@ -418,3 +428,4 @@ const mapStyleColors = [
   {},
   {},
 ];
+
