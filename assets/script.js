@@ -30,27 +30,26 @@ function mapMaker() {
   geocoder = new google.maps.Geocoder();
   infoWindow = new google.maps.InfoWindow();
 
-
   // Add Get Tested button and position it at the bottom
- /* const locationBottomBtn = document.createElement("button");
+  /* const locationBottomBtn = document.createElement("button");
   locationBottomBtn.textContent = "Get Tested";
   locationBottomBtn.classList.add("button");
   locationBottomBtn.dataset.open = "my-modal";
   map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(
     locationBottomBtn */
 
-
-    //displaying a div with an image in it instead of a button, as it's such a central focus
-    const locationBottomBtn = document.createElement("div");
-    locationBottomBtn.innerHTML = "<img src=\"assets/images/test-graphic.png\" width=\"150px\" height=\"150px\">";
-    locationBottomBtn.setAttribute('id', "get-tested-button"); 
-    //add class for addition styling in css
-    locationBottomBtn.classList.add("div");
-    locationBottomBtn.dataset.open = "my-modal";
-    //clicking on div will open the search modal
-     map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(
+  //displaying a div with an image in it instead of a button, as it's such a central focus
+  const locationBottomBtn = document.createElement("div");
+  locationBottomBtn.innerHTML =
+    '<img src="assets/images/test-graphic.png" width="150px" height="150px">';
+  locationBottomBtn.setAttribute("id", "get-tested-button");
+  //add class for addition styling in css
+  locationBottomBtn.classList.add("div");
+  locationBottomBtn.dataset.open = "my-modal";
+  //clicking on div will open the search modal
+  map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(
     locationBottomBtn
-    ); 
+  );
 
   const showCurrentLocation = document.getElementById("my-location");
   showCurrentLocation.addEventListener("click", () => {
@@ -116,16 +115,20 @@ function getCovidData() {
     console.log(response);
 
     testLocations = response.items;
-    let htmlTags = ``
+    let htmlTags = ``;
     console.log(testLocations);
     for (let i = 0; i < 4; i++) {
       htmlTags += `            
     <div class="site-info">
-      <p class="title"><strong> ${testLocations[i].title.split(":")[1]}</strong></p>
-      <p class="phone-number"> ${testLocations[i].contacts[0].phone[0].value}</p>
-    </div>`
-    } 
-    $("#site-info-wrapper").html(htmlTags)
+      <p class="title"><strong> ${
+        testLocations[i].title.split(":")[1]
+      }</strong></p>
+      <p class="phone-number"> ${
+        testLocations[i].contacts[0].phone[0].value
+      }</p>
+    </div>`;
+    }
+    $("#site-info-wrapper").html(htmlTags);
 
     renderMarkers(testLocations);
   });
@@ -206,6 +209,11 @@ $("#state-location").on("click", function () {
 
 $("#zip-location").on("click", function () {
   var address = $("#zip").val();
+  codeAddress(address);
+});
+
+$("#search-zip").on("click", function () {
+  var address = $("#zip-text").val();
   codeAddress(address);
 });
 
