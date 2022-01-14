@@ -98,3 +98,19 @@ body {
 #enter-location {
   text-align: center;
 }
+
+/* This button is a central focus of our app, styling to accentuate it*/
+#get-tested-button{
+    border: 25px solid #d38681;
+    border-radius: 15px;
+    background-image: "url('assets/images/test-graphic.png')";
+}
+
+ /* add shadow to to outer picture on hover*/
+#get-tested-button img:hover{
+    box-shadow: 0px 0px 20px white;
+}
+ /* add highlit to inner picture on hover*/
+#get-tested-button:hover{
+    box-shadow: 10px 10px 5px grey;
+}
