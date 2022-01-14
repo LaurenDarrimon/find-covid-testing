@@ -117,12 +117,6 @@ function getCovidData() {
     renderMarkers(testLocations);
   });
 }
-// removed this because it is making the div too long
-      // ${testLocations[i].address.street} 
-      // <p class="address">${testLocations[i].address.houseNumber} 
-      // ${testLocations[i].address.city} ,
-      // ${testLocations[i].address.state} 
-      // ${testLocations[i].address.postalCode}</p>
 
 function renderMarkers(testLocations) {
   console.log("function is running to render markers");
