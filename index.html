@@ -1,136 +1,167 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Map-A-Test: Find a COVID Testing Site Near Me</title>
 
-    <!-- JQUERY css-->
-    <link
-      rel="stylesheet"
-      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Map-A-Test: Find a COVID Testing Site Near Me</title>
 
-    <!-- FOUNDATION css-->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css"
-      crossorigin="anonymous"
-    />
+  <!-- JQUERY css-->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 
-    <!-- CUSTOM css-->
-    <link rel="stylesheet" href="assets/style.css" />
-  </head>
+  <!-- FOUNDATION css-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css"
+    crossorigin="anonymous" />
 
-  <body>
-    <!-- top nav bar -->
-    <div class="top-bar">
-      <ul class="menu align-middle">
-        <li class="menu-text align-middle">
-          <img src="assets/images/test-map-logo.png" />
-        </li>
-        <li>
-          <a href="#">About this Data</a>
-        </li>
-        <li><a href="#">Our Team</a></li>
-      </ul>
-      <ul class="menu align-center">
-        <li>
-          <h1>Find a COVID Testing Site</h1>
-        </li>
-      </ul>
-      <ul class="menu">
-        <li>
-          <input type="search" id="zip-text" placeholder="Search by Zip" />
-        </li>
-        <li>
-          <button type="button" id="search-zip" class="button">Search</button>
-        </li>
-      </ul>
+  <!-- CUSTOM css-->
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+
+<body>
+  <!-- top nav bar -->
+  <div class="top-bar">
+    <ul class="menu align-middle">
+      <li class="menu-text align-middle">
+        <img src="assets/images/test-map-logo.png" />
+      </li>
+      <li>
+        <a href="#">About this Data</a>
+      </li>
+      <li><a href="#">Our Team</a></li>
+    </ul>
+    <ul class="menu align-center">
+      <li>
+        <h1>Find a COVID Testing Site</h1>
+      </li>
+    </ul>
+    <ul class="menu">
+      <li>
+        <input type="search" id="zip-text" placeholder="Search by Zip" />
+      </li>
+      <li>
+        <button type="button" id="search-zip" class="button">Search</button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- map as background -->
+  <div id="map"></div>
+
+  <!-- Test Site Information  -->
+  <div id="box">
+    <h4 id="title">Sites Near You:</h4>
+    <br />
+    <div id="site-info-wrapper">
+      <!-- empty div to populate with data  -->
     </div>
+  </div>
 
-    <!-- map as background -->
-    <div id="map"></div>
+  <div id="past-locations" class="row align-bottom align-right">
+    <!-- Past Location Buttons  -->
+    <div class="cell medium-3 p50">
+      <h4 id="title">Your Saved Locations</h4>
 
-    <!-- Test Site Information  -->
-    <div id="box">
-      <h4 id="title">Sites Near You:</h4>
-      <br />
-      <div id="site-info-wrapper">
-        <!-- empty div to populate with data  -->
+      <div id="past-location-buttons-div">
+        <!-- empty div to populate with buttons for past locations  -->
       </div>
     </div>
+  </div>
 
-    <div id="past-locations" class="row align-bottom align-right">
-      <!-- Past Location Buttons  -->
-      <div class="cell medium-3 p50">
-        <h4 id="title">Your Saved Locations</h4>
+  <!-- MODAL search box -->
+  <div class="reveal" id="my-modal" data-reveal>
+    <div class="row grid-x align-center align-middle" id="location-search-wrapper">
+      <div class="cell medium-6 p20" id="location-search-box">
+        <button class="button" id="my-location">
+          Fetch My Current Location
+        </button>
+        <br />
+        <h2 id="enter-location">- or - <br />Enter it Below:</h2>
 
-        <div id="past-location-buttons-div">
-          <!-- empty div to populate with buttons for past locations  -->
-        </div>
-      </div>
-    </div>
+        <label>Select Your State
+          <select id="state">
+            <option value="al">Alabama</option>
+            <option value="ak">Alaska</option>
+            <option value="az">Arizona</option>
+            <option value="">Arkansas</option>
+            <option value="ca">California</option>
+            <option value="">Colorado</option>
+            <option value="">Connecticut</option>
+            <option value="">Delaware</option>
+            <option value="">Florida</option>
+            <option value="">Georgia</option>
+            <option value="">Hawaii</option>
+            <option value="">Idaho</option>
+            <option value="">Illinois</option>
+            <option value="">Indiana</option>
+            <option value="">Iowa</option>
+            <option value="">Kansas</option>
+            <option value="">Kentucky</option>
+            <option value="">Louisiana</option>
+            <option value="">Maine</option>
+            <option value="">Maryland</option>
+            <option value="">Massachusetts</option>
+            <option value="">Michigan</option>
+            <option value="">Minnesota</option>
+            <option value="">Mississippi</option>
+            <option value="">Missouri</option>
+            <option value="">Montana</option>
+            <option value="">Nebraska</option>
+            <option value="nv">Nevada</option>
+            <option value="">New Hampshire</option>
+            <option value="">New Jersey</option>
+            <option value="">New Mexico</option>
+            <option value="">New York</option>
+            <option value="">North Carolina</option>
+            <option value="">North Dakota</option>
+            <option value="">Ohio</option>
+            <option value="">Oklahoma</option>
+            <option value="">Oregon</option>
+            <option value="">Pennsylvania</option>
+            <option value="">Rhode Island</option>
+            <option value="">South Carolina</option>
+            <option value="">South Dakota</option>
+            <option value="">Tennessee</option>
+            <option value="">Texas</option>
+            <option value="">Utah</option>
+            <option value="">Vermont</option>
+            <option value="">Virginia</option>
+            <option value="">Washington</option>
+            <option value="">West Virginia</option>
+            <option value="">Wisconsin</option>
+            <option value="">Wyoming</option>
 
-    <!-- MODAL search box -->
-    <div class="reveal" id="my-modal" data-reveal>
-      <div
-        class="row grid-x align-center align-middle"
-        id="location-search-wrapper"
-      >
-        <div class="cell medium-6 p20" id="location-search-box">
-          <button class="button" id="my-location">
-            Fetch My Current Location
+          </select> <button class="button" id="state-location">Show</button>
+        </label>
+
+        <br />
+        <label>
+          Search by Zip
+          <input type="text" placeholder="enter zip code" id="zip" /><button class="button" id="zip-location">
+            Show
           </button>
-          <br />
-          <h2 id="enter-location">- or - <br />Enter it Below:</h2>
+        </label>
 
-          <label
-            >Select Your State
-            <select id="state">
-              <option value="ca">California</option>
-              <option value="nv">Nevada</option>
-              <option value="al">Alabama</option>
-              <option value="ak">Alaska</option></select
-            ><button class="button" id="state-location">Show</button>
-          </label>
-
-          <br />
-          <label>
-            Search by Zip
-            <input type="text" placeholder="enter zip code" id="zip" /><button
-              class="button"
-              id="zip-location"
-            >
-              Show
-            </button>
-          </label>
-
-          <br />
-        </div>
+        <br />
       </div>
     </div>
+  </div>
 
-    <!-- JQUERY js-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- JQUERY js-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
 
-    <!-- FOUNDATION js -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js"
-      crossorigin="anonymous"
-    ></script>
+  <!-- FOUNDATION js -->
+  <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js"
+    crossorigin="anonymous"></script>
 
-    <!-- CUSTOM JS-->
-    <script src="assets/script.js"></script>
+  <!-- CUSTOM JS-->
+  <script src="assets/script.js"></script>
 
-    <!--GOOGLE map -->
-    <script
-      async
-      defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn-EsceBwuoTW01nAWUbsPb0pl86wAWMY&callback=mapMaker&v=weekly"
-    ></script>
-  </body>
+  <!--GOOGLE map -->
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn-EsceBwuoTW01nAWUbsPb0pl86wAWMY&callback=mapMaker&v=weekly"></script>
+</body>
+
 </html>
