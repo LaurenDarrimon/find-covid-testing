@@ -5,9 +5,9 @@
 ## Table of Contents:
 
 * [Description](#description)
-* [Map-A-Test Site](#deployed-link)
+* [Link to the Map-A-Test Site](#live-site)
 * [Demo](#demo)
-* [Built With](#technology-stack)
+* [Technology Stack](#technology-stack)
 * [Authors](#authors)
 
 ## Description
@@ -15,7 +15,7 @@
 
 ## Live Site
 
-* [Find Covid Testing Site](https://laurendarrimon.github.io/find-covid-testing/)
+* [Map-A-Test: Find a Covid Testing Site Near You](https://laurendarrimon.github.io/find-covid-testing/)
 
 
 ## Demo
@@ -31,6 +31,7 @@
 * [Parsley](https://parsleyjs.org/doc/index.html)
 * [Google Maps Api](https://developers.google.com/maps/documentation/javascript/overview)
 * [Finding COVID-19 Testing Sites API](https://developer.here.com/blog/finding-covid-19-testing-sites)
+
 
 ## Authors
 
