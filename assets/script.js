@@ -21,233 +21,6 @@ let testLocations = [];
 let markers = []; //set markers to be an empty array to fill with all the marker info
 let pastAddress = []; //empty array that we will fill with past addresses 
 
-//Initialize and add the map
-let map, infoWindow, geocoder;
-
-
-// GET CURRENT LOCATION & DRAW MAP
-function mapMaker() {
-
-  //This function is called from the script tag in the html via Google Maps API's callback function
-  //As soon as the data is retrived, Google Maps API will call this function.
-  
-  //Render placeholder map that will show on page load
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: -34.397, lng: 150.644 },
-    zoom: 8,
-    styles: mapStyleColors,
-  });
-  geocoder = new google.maps.Geocoder();
-  infoWindow = new google.maps.InfoWindow();
-
-  //RENDER INITIAL SEARCH BUTTON 
-  const locationBottomBtn = document.createElement("div"); //displaying a div with an image for a button
-  locationBottomBtn.innerHTML =
-    '<img src="assets/images/test-graphic.png" width="150px" height="150px">';
-  locationBottomBtn.setAttribute("id", "get-tested-button");   //add class for addition styling in css
-  locationBottomBtn.classList.add("div");
-  locationBottomBtn.dataset.open = "my-modal";
-  map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(
-    locationBottomBtn  //clicking on div will open the search modal
-  );
-
-  const showCurrentLocation = document.getElementById("my-location");
-  showCurrentLocation.addEventListener("click", () => {
-    if (navigator.geolocation) {
-      //close the modal when popup appears to ask user to share location
-      $(".reveal").foundation("close");
-      // console.log("test", $(".reveal"));
-
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          };
-          //console.log("current position", pos);
-
-          userLat = pos.lat;
-          userLon = pos.lng;
-          // console.log("current user lat/lng " + userLat + userLon);
-          map.setCenter(pos);
-          //mark current location on map
-          var marker = new google.maps.Marker({
-            map: map,
-            position: pos,
-          });
-          getCovidData();
-        },
-        () => {
-          handleLocationError(true, infoWindow, map.getCenter());
-        }
-      );
-    } else {
-      // Browser doesn't support Geolocation
-
-      handleLocationError(false, infoWindow, map.getCenter());
-    }
-  });
-}
-
-//If geolocation fails 
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(
-    browserHasGeolocation
-      ? "Error: The Geolocation service failed."
-      : "Error: Your browser doesn't support geolocation."
-  );
-  infoWindow.open(map);
-  getCovidData();
-}
-
-//API CALL to get COVID data 
-function getCovidData() {
-  $.ajax({
-    url:
-      "https://discover.search.hereapi.com/v1/discover?apikey=" +
-      covidApiKey +
-      "&q=Covid&at=" +
-      userLat +
-      "," +
-      userLon +
-      "&limit=10",
-    method: "GET",
-  }).then(function (response) {
-
-    testLocations = response.items;
-  
-    //console.log(testLocations);
-
-    displayLocationList(testLocations);
-    renderMarkers(testLocations);
-  });
-}
-
-//RENDER LIST  - Feed the COVID Data to a function to display the sidebar list of locations
-function displayLocationList(testLocations){
-  let htmlTags = ``;
-
-  //loop through the site location and add a div filled with info for each site 
-  for (let i = 0; i < 4; i++) {
-    htmlTags += `            
-      <div class="site-info">
-        <p class="title"><strong> ${
-          testLocations[i].title.split(":")[1]
-        }</strong></p>
-        <p class="phone-number"> ${
-          testLocations[i].contacts[0].phone[0].value
-        }</p>
-      </div>`;
-  }
-  $("#site-info-wrapper").html(htmlTags);
-}
-
-//RENDER MARKERS Feed COVID data to goople map object to draw markers & info windows
-function renderMarkers(testLocations) {
-  //console.log("function is running to render markers");
-  //console.log(testLocations);
-
-  map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: userLat, lng: userLon },
-    zoom: 8,
-    styles: mapStyleColors,
-  });
-
-  for (let i = 0; i < testLocations.length; i++) {
-    //create a local object for each pair of lat/lon coordinates, pulled from the response data at iterative index
-    var locations = {
-      lat: testLocations[i].position["lat"],
-      lng: testLocations[i].position["lng"],
-    };
-
-    //console.log(locations);
-    //console.log(testLocations[i].title);
-
-    //create a new marker google maps marker for each testing site's location object
-    markers[i] = new google.maps.Marker({
-      position: locations,
-      map: map,
-      title: testLocations[i].title,
-      custom_property: testLocations[i].contacts[0].www[0]["value"],
-    });
-
-    //every time a marker is rendered, add event listener, listening for clicks on any of the markers.
-    markers[i].addListener(
-      //when marker click happens
-      "click",
-      //show an info window
-      function () {
-        let details = new google.maps.InfoWindow({
-          content: this.title + "\n" + this.custom_property,
-        });
-        details.open(map, this);
-      }
-    );
-  }
-}
-
-
-//GET ADDRESS - function to get lat and lon from address input 
-function codeAddress(address) {
-  geocoder.geocode({ address: address }, function (results, status) {
-
-    //get user Coordinates from address and store them
-    userLat = results[0].geometry.location.lat();
-    userLon = results[0].geometry.location.lng();
-    //console.log("lat/lng from function" + userLat + userLon);
-
-    console.log("function running to get address")
-    console.log(address);
-
-    if (status == google.maps.GeocoderStatus.OK) {
-      //In this case it creates a marker, but you can get the lat and lng from the location.LatLng
-      map.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-        map: map,
-        position: results[0].geometry.location,
-      });
-    } else {
-      alert("Geocode was not successful for the following reason: " + status);
-    }
-  });
-  $(".reveal").foundation("close");
-
-  // once we have location, call up API
-  getCovidData();
-  //Store address for later use. 
-  storeAddress(address);
-
-}
-
-function storeAddress(address){
-  //store any addresses the user has searched for in local storage
-  pastAddress.push(address);
-
-  console.log(pastAddress)
-  localStorage.setItem("locations", JSON.stringify(pastAddress));
-}
-
-
-
-// Add event listener to state button
-$("#state-location").on("click", function () {
-  var address = $("#state").val();
-  codeAddress(address);
-});
-
-// Add event listener to zip button
-$("#zip-location").on("click", function () {
-  var address = $("#zip").val();
-  codeAddress(address);
-});
-
-// Add event listener to zip button in top nav bar 
-$("#search-zip").on("click", function () {
-  var address = $("#zip-text").val();
-  codeAddress(address);
-});
-
 //Map stying from Snazzy Maps 
 const mapStyleColors = [
   {
@@ -450,4 +223,262 @@ const mapStyleColors = [
   {},
   {},
 ];
+
+//Initialize and add the map
+let map, infoWindow, geocoder;
+
+
+// GET CURRENT LOCATION & DRAW MAP
+function mapMaker() {
+
+  //This function is called from the script tag in the html via Google Maps API's callback function
+  //As soon as the data is retrived, Google Maps API will call this function.
+  
+  //Render placeholder map that will show on page load
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: -34.397, lng: 150.644 },
+    zoom: 8,
+    styles: mapStyleColors,
+  });
+  geocoder = new google.maps.Geocoder();
+  infoWindow = new google.maps.InfoWindow();
+
+  //RENDER INITIAL SEARCH BUTTON 
+  const locationBottomBtn = document.createElement("div"); //displaying a div with an image for a button
+  locationBottomBtn.innerHTML =
+    '<img src="assets/images/test-graphic.png" width="150px" height="150px">';
+  locationBottomBtn.setAttribute("id", "get-tested-button");   //add class for addition styling in css
+  locationBottomBtn.classList.add("div");
+  locationBottomBtn.dataset.open = "my-modal";
+  map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(
+    locationBottomBtn  //clicking on div will open the search modal
+  );
+
+  const showCurrentLocation = document.getElementById("my-location");
+  showCurrentLocation.addEventListener("click", () => {
+    if (navigator.geolocation) {
+      //close the modal when popup appears to ask user to share location
+      $(".reveal").foundation("close");
+      // console.log("test", $(".reveal"));
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+          //console.log("current position", pos);
+
+          userLat = pos.lat;
+          userLon = pos.lng;
+
+          // console.log("current user lat/lng " + userLat + userLon);
+          map.setCenter(pos);
+          //mark current location on map
+          var marker = new google.maps.Marker({
+            map: map,
+            position: pos,
+          });
+          getCovidData();
+        },
+        () => {
+          handleLocationError(true, infoWindow, map.getCenter());
+        }
+      );
+    } else {
+      // Browser doesn't support Geolocation
+
+      handleLocationError(false, infoWindow, map.getCenter());
+    }
+  });
+}
+
+//If geolocation fails 
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(
+    browserHasGeolocation
+      ? "Error: The Geolocation service failed."
+      : "Error: Your browser doesn't support geolocation."
+  );
+  infoWindow.open(map);
+  getCovidData();
+}
+
+//API CALL to get COVID data 
+function getCovidData() {
+  $.ajax({
+    url:
+      "https://discover.search.hereapi.com/v1/discover?apikey=" +
+      covidApiKey +
+      "&q=Covid&at=" +
+      userLat +
+      "," +
+      userLon +
+      "&limit=10",
+    method: "GET",
+  }).then(function (response) {
+
+    testLocations = response.items;
+  
+    //console.log(testLocations);
+
+    displayLocationList(testLocations);
+    renderMarkers(testLocations);
+  });
+}
+
+//RENDER LIST  - Feed the COVID Data to a function to display the sidebar list of locations
+function displayLocationList(testLocations){
+  let htmlTags = ``;
+
+  //loop through the site location and add a div filled with info for each site 
+  for (let i = 0; i < 4; i++) {
+    htmlTags += `            
+      <div class="site-info">
+        <p class="title"><strong> ${
+          testLocations[i].title.split(":")[1]
+        }</strong></p>
+        <p class="phone-number"> ${
+          testLocations[i].contacts[0].phone[0].value
+        }</p>
+      </div>`;
+  }
+  $("#site-info-wrapper").html(htmlTags);
+}
+
+//RENDER MARKERS Feed COVID data to goople map object to draw markers & info windows
+function renderMarkers(testLocations) {
+  //console.log("function is running to render markers");
+  //console.log(testLocations);
+
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: userLat, lng: userLon },
+    zoom: 8,
+    styles: mapStyleColors,
+  });
+
+  for (let i = 0; i < testLocations.length; i++) {
+    //create a local object for each pair of lat/lon coordinates, pulled from the response data at iterative index
+    var locations = {
+      lat: testLocations[i].position["lat"],
+      lng: testLocations[i].position["lng"],
+    };
+
+    //console.log(locations);
+    //console.log(testLocations[i].title);
+
+    //create a new marker google maps marker for each testing site's location object
+    markers[i] = new google.maps.Marker({
+      position: locations,
+      map: map,
+      title: testLocations[i].title,
+      custom_property: testLocations[i].contacts[0].www[0]["value"],
+    });
+
+    //every time a marker is rendered, add event listener, listening for clicks on any of the markers.
+    markers[i].addListener(
+      //when marker click happens
+      "click",
+      //show an info window
+      function () {
+        let details = new google.maps.InfoWindow({
+          content: this.title + "\n" + this.custom_property,
+        });
+        details.open(map, this);
+      }
+    );
+  }
+}
+
+
+//GET ADDRESS - function to get lat and lon from address input 
+function codeAddress(address) {
+  geocoder.geocode({ address: address }, function (results, status) {
+
+    //get user Coordinates from address and store them
+    userLat = results[0].geometry.location.lat();
+    userLon = results[0].geometry.location.lng();
+    //console.log("lat/lng from function" + userLat + userLon);
+
+    console.log("function running to get address")
+    console.log(address);
+
+    if (status == google.maps.GeocoderStatus.OK) {
+      //In this case it creates a marker, but you can get the lat and lng from the location.LatLng
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+        map: map,
+        position: results[0].geometry.location,
+      });
+
+    // once we have location, call up API
+    getCovidData();
+
+    } else {
+      alert("Geocode was not successful for the following reason: " + status);
+    }
+  });
+  $(".reveal").foundation("close");
+
+
+
+}
+
+function storeAddress(address){
+  //store any addresses the user has searched for in local storage
+
+  pastAddress.push(address);
+
+  console.log(pastAddress);
+  localStorage.setItem("locations", JSON.stringify(pastAddress));
+}
+
+function pastLocationStorage(){
+
+  console.log ("Checking for local storage");
+
+  //first, check to if there is anything in local storage with the key of locations 
+  if (localStorage.getItem("locations")){
+
+    //if so, parse through anything in local stoarage and save it into the array of past addresses
+    pastAddress = JSON.parse(localStorage.getItem("locations"))
+    console.log ("There is something in local storage.");
+    console.log (pastAddress);
+
+    //loop through the array of addresses and 
+    for (i=0; i<pastAddress.length; i++){
+      
+      console.log (pastAddress[i]);
+    }
+
+  }
+
+}
+
+//CHECK STORAGE - on page load, run the function 
+pastLocationStorage();
+
+// Add event listener to state button
+$("#state-location").on("click", function () {
+  var address = $("#state").val();
+  codeAddress(address);
+  storeAddress(address);
+});
+
+// Add event listener to zip button
+$("#zip-location").on("click", function () {
+  var address = $("#zip").val();
+  codeAddress(address);
+  storeAddress(address);
+});
+
+// Add event listener to zip button in top nav bar 
+$("#search-zip").on("click", function () {
+  var address = $("#zip-text").val();
+  codeAddress(address);
+  storeAddress(address);
+});
+
+
 

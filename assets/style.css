@@ -16,7 +16,7 @@ body {
 }
 
 .top-bar {
-  z-index: 100;
+  z-index: 90;
   position: relative;
   background-color: var(--green) !important;
   color: var--(white) !important;
@@ -77,6 +77,10 @@ body {
   border: dotted 2px white;
   margin-bottom: 5%;
   padding: 3px;
+}
+
+#past-locations{
+  z-index: 100;
 }
 
 #map {
