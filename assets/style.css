@@ -96,6 +96,7 @@ body {
   border: solid 10px white;
   padding: 30px;
   display: none;
+  overflow: auto;
 }
 
 /* Adjust the size of the button on medium and small devices */
