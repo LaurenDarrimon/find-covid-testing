@@ -25,6 +25,7 @@ Once the users location is determined, they will be able to view test site infor
 
 
 ## Demo
+![Image of Deployed Site](assets/images/deployedsite-image.png)
 ![Gif of Deployed Site](assets/images/finalpage.gif)
 
 ## Technology Stack
