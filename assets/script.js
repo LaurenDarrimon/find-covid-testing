@@ -423,8 +423,6 @@ function storeAddress(address) {
 
   console.log(pastAddress);
   localStorage.setItem("locations", JSON.stringify(pastAddress));
-
-  displayNewLocation(address);
 }
 
 function displayNewLocation(address) {
@@ -434,37 +432,50 @@ function displayNewLocation(address) {
     class: "saved-location-button",
   });
 
-  //APPEND to div
-  $("#past-locations").append(button);
-}
+function displayNewLocation(address){
 
-//HANDLE NEW LOCATION INPUT
-function handleLocations(address) {
-  //every time we get a new input location, we need to do three things
+  $("#past-locations").show();
 
-  //1. Pass the location to goole API for lat/lon
-  codeAddress(address);
+  let button  = 
+    $('<button/>', {  //CREATE a new button
+      text: address,  //FILL new button
+      class: "saved-location-button",
+      click: function () {
+        codeAddress(address); 
+      },
+    });
 
-  //2. Store the new location in local storage
-  storeAddress(address);
+    //APPEND to div
+    $("#past-locations").append(button);
 }
 
 // Add event listener to state button
 $("#state-location").on("click", function () {
+
+  //every time we get a new input location, we need to do three things:
   var address = $("#state").val();
-  handleLocations(address);
+  //1. Pass the location to goole API for lat/lon
+  codeAddress(address);
+  //2. Store the new location in local storage
+  storeAddress(address);
+  // display a button in the saved locations section with the new location
+  displayNewLocation(address);
 });
 
 // Add event listener to zip button
 $("#zip-location").on("click", function () {
   var address = $("#zip").val();
-  handleLocations(address);
+  codeAddress(address);
+  storeAddress(address);
+  displayNewLocation(address);
 });
 
 // Add event listener to zip button in top nav bar
 $("#search-zip").on("click", function () {
   var address = $("#zip-text").val();
-  handleLocations(address);
+  codeAddress(address);
+  storeAddress(address);
+  displayNewLocation(address);
 });
 
 //CHECK STORAGE -
@@ -488,11 +499,15 @@ function displaySavedLocations() {
 
       let address = pastAddress[i];
 
-      let button = $("<button/>", {
-        //CREATE a new button
-        text: address, //FILL new button
-        class: "saved-location-button",
-      });
+      let button  = 
+          $('<button/>', {  //CREATE a new button
+            text: address,  //FILL new button
+            class: "saved-location-button",
+            click: function () { 
+              //when a button is clicked code the address into Lat long, 
+              codeAddress(address);
+             }
+          });
 
       //APPEND to div
       $("#past-locations").append(button);
