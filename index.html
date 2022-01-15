@@ -41,7 +41,7 @@
     <ul class="menu">
       <li>
         <!-- <form class="form"> -->
-          <!-- data-parsley-type="integer" data-parsley-length="[5, 5]" -- this was previously added to input -->
+        <!-- data-parsley-type="integer" data-parsley-length="[5, 5]" -- this was previously added to input -->
         <input type="number" id="zip-text" placeholder="Search by Zip" />
         <!-- </form> -->
       </li>
@@ -63,9 +63,9 @@
     </div>
   </div>
 
-  <div id="past-locations" class="row align-bottom align-right">
+  <div id="past-locations">
     <!-- Past Location Buttons  -->
-    <div class="cell medium-3 p50">
+    <div>
       <h4 id="title">Your Saved Locations</h4>
 
       <div id="past-location-buttons-div">
@@ -144,9 +144,9 @@
         <label>
           Search by Zip
           <!-- <form class="form"> -->
-            <!-- data-parsley-type="integer" data-parsley-length="[5, 5]" -- this was previously added to input -->
-          <input type="number" placeholder="enter zip code" id="zip" /><button class="button" id="zip-location">
-          <!-- </form> -->
+          <!-- data-parsley-type="integer"  minlength="5" data-parsley-minlength="5" -- this was previously added to input -->
+          <input type="number" placeholder="enter zip code" id="zip" data-parsley-type="integer" data-parsley-length="[5, 5]" /><button class="button" id="zip-location">
+            <!-- </form> -->
             Show
           </button>
         </label>
