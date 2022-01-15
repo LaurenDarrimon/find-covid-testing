@@ -432,9 +432,57 @@ function storeAddress(address){
 
   console.log(pastAddress);
   localStorage.setItem("locations", JSON.stringify(pastAddress));
+
+  displayNewLocation(address);
 }
 
-function pastLocationStorage(){
+
+
+function displayNewLocation(address){
+
+  let button  = 
+    $('<button/>', {  //CREATE a new button
+      text: address,  //FILL new button
+      class: "saved-location-button"
+    });
+
+    //APPEND to div
+    $("#past-locations").append(button);
+}
+
+//HANDLE NEW LOCATION INPUT
+function handleLocations(address){
+  //every time we get a new input location, we need to do three things
+
+  //1. Pass the location to goole API for lat/lon
+  codeAddress(address);
+
+  //2. Store the new location in local storage
+  storeAddress(address);
+}
+
+
+// Add event listener to state button
+$("#state-location").on("click", function () {
+  var address = $("#state").val();
+  handleLocations(address);
+});
+
+// Add event listener to zip button
+$("#zip-location").on("click", function () {
+  var address = $("#zip").val();
+  handleLocations(address);
+});
+
+// Add event listener to zip button in top nav bar 
+$("#search-zip").on("click", function () {
+  var address = $("#zip-text").val();
+  handleLocations(address);
+});
+
+
+//CHECK STORAGE -  
+function displaySavedLocations(){
 
   console.log ("Checking for local storage");
 
@@ -449,40 +497,30 @@ function pastLocationStorage(){
     //turn the display of the past markers on 
     $("#past-locations").show();
 
-
-    //loop through the array of addresses and 
+    //loop through the array of saved locations
     for (i=0; i<pastAddress.length; i++){
 
+      console.log("this is the past address")
       console.log (pastAddress[i]);
+
+      let address = pastAddress[i];
+
+      let button  = 
+          $('<button/>', {  //CREATE a new button
+            text: address,  //FILL new button
+            class: "saved-location-button"
+          });
+
+      //APPEND to div
+      $("#past-locations").append(button);
     }
 
   }
 
 }
 
-//CHECK STORAGE - on page load, run the function 
-pastLocationStorage();
-
-// Add event listener to state button
-$("#state-location").on("click", function () {
-  var address = $("#state").val();
-  codeAddress(address);
-  storeAddress(address);
-});
-
-// Add event listener to zip button
-$("#zip-location").on("click", function () {
-  var address = $("#zip").val();
-  codeAddress(address);
-  storeAddress(address);
-});
-
-// Add event listener to zip button in top nav bar 
-$("#search-zip").on("click", function () {
-  var address = $("#zip-text").val();
-  codeAddress(address);
-  storeAddress(address);
-});
+//CHECK STORAGE - when the pages load, run the function to check local storage and display any saved locations 
+displaySavedLocations();
 
 
 
