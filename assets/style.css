@@ -67,14 +67,6 @@ body {
   overflow-y: auto;
 }
 
-/* Adjust the size of the Sites near you on medium and small devices */
-@media screen and (max-width: 50em) {
-  #box {
-    width: 40%;
-    height: 40%;
-  }
-}
-
 /* make #box responsive */
 
 .site-info {
@@ -97,22 +89,6 @@ body {
   padding: 30px;
   display: none;
   overflow: auto;
-}
-
-/* Adjust the size of the button on medium and small devices */
-@media screen and (max-width: 50em) {
-  #past-locations {
-    width: 50%;
-    height: 40%;
-  }
-}
-
-/* Medium and up */
-@media screen and (min-width: 40em) {
-  #past-locations {
-    width: 30%;
-    height: 60%;
-  }
 }
 
 button {
@@ -155,6 +131,15 @@ button:hover {
   transform: translate(0, -30%);
 }
 
+/* add shadow to to outer picture on hover*/
+#get-tested-button img:hover {
+  box-shadow: 0px 0px 20px white;
+}
+/* add highlit to inner picture on hover*/
+#get-tested-button:hover {
+  box-shadow: 10px 10px 5px grey;
+}
+
 /* Adjust the size of the button on medium and small devices */
 @media screen and (max-width: 50em) {
   #get-tested-button {
@@ -166,11 +151,26 @@ button:hover {
   }
 }
 
-/* add shadow to to outer picture on hover*/
-#get-tested-button img:hover {
-  box-shadow: 0px 0px 20px white;
+/* Adjust the size of the button on medium and small devices */
+@media screen and (max-width: 50em) {
+  #past-locations {
+    width: 50%;
+    height: 40%;
+  }
 }
-/* add highlit to inner picture on hover*/
-#get-tested-button:hover {
-  box-shadow: 10px 10px 5px grey;
+
+/* Medium and up */
+@media screen and (min-width: 40em) {
+  #past-locations {
+    width: 30%;
+    height: 60%;
+  }
+}
+
+/* Adjust the size of the Sites near you on medium and small devices */
+@media screen and (max-width: 50em) {
+  #box {
+    width: 40%;
+    height: 40%;
+  }
 }
