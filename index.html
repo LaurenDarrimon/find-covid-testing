@@ -14,6 +14,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css"
     crossorigin="anonymous" />
 
+  <!-- PARSLEY js -->
+  <script src="http://parsleyjs.org/dist/parsley.js"></script>
+
   <!-- CUSTOM css-->
   <link rel="stylesheet" href="assets/style.css" />
 </head>
@@ -37,7 +40,10 @@
     </ul>
     <ul class="menu">
       <li>
-        <input type="search" id="zip-text" placeholder="Search by Zip" />
+        <!-- <form class="form"> -->
+          <!-- data-parsley-type="integer" data-parsley-length="[5, 5]" -- this was previously added to input -->
+        <input type="number" id="zip-text" placeholder="Search by Zip" />
+        <!-- </form> -->
       </li>
       <li>
         <button type="button" id="search-zip" class="button">Search</button>
@@ -137,7 +143,10 @@
         <br />
         <label>
           Search by Zip
-          <input type="text" placeholder="enter zip code" id="zip" /><button class="button" id="zip-location">
+          <!-- <form class="form"> -->
+            <!-- data-parsley-type="integer" data-parsley-length="[5, 5]" -- this was previously added to input -->
+          <input type="number" placeholder="enter zip code" id="zip" /><button class="button" id="zip-location">
+          <!-- </form> -->
             Show
           </button>
         </label>
@@ -158,6 +167,9 @@
 
   <!-- CUSTOM JS-->
   <script src="assets/script.js"></script>
+
+  <!-- PARSLEY js -->
+  <script src="/parsley.min.js"></script>
 
   <!--GOOGLE map -->
   <script async defer

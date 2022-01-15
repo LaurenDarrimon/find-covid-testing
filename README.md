@@ -5,9 +5,9 @@
 ## Table of Contents:
 
 * [Description](#description)
-* [Map-A-Test Site](#deployed-link)
+* [Link to the Map-A-Test Site](#live-site)
 * [Demo](#demo)
-* [Built With](#technology-stack)
+* [Technology Stack](#technology-stack)
 * [Authors](#authors)
 
 ## Description
@@ -15,7 +15,7 @@
 
 ## Live Site
 
-* [Find Covid Testing Site](https://laurendarrimon.github.io/find-covid-testing/)
+* [Map-A-Test: Find a Covid Testing Site Near You](https://laurendarrimon.github.io/find-covid-testing/)
 
 
 ## Demo
@@ -32,19 +32,20 @@
 * [Google Maps Api](https://developers.google.com/maps/documentation/javascript/overview)
 * [Finding COVID-19 Testing Sites API](https://developer.here.com/blog/finding-covid-19-testing-sites)
 
+
 ## Authors
 
-* **Lauren Darrimon**
+**Lauren Darrimon**
 
 * [Lauren's GitHub](https://github.com/LaurenDarrimon)
 * [Lauren's LinkedIn](https://www.linkedin.com/in/lauren-lalita-duker-9537b1201/)
 
-* **Iman Mansour**
+**Iman Mansour**
 
 * [Iman's GitHub](https://github.com/imanmansour86)
 * [Iman's LinkedIn](https://www.linkedin.com/in/iman-mansour-51391515/)
 
-* **Leslie Patino**
+**Leslie Patino**
 
 * [Leslie's GitHub](https://github.com/lesliejpatino)
 * [Leslie's LinkedIn](https://www.linkedin.com/in/lesliejpatino/)
