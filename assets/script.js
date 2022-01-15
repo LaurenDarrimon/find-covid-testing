@@ -346,9 +346,6 @@ function displayLocationList(testLocations) {
 
 //RENDER MARKERS Feed COVID data to goople map object to draw markers & info windows
 function renderMarkers(testLocations) {
-  //console.log("function is running to render markers");
-  //console.log(testLocations);
-
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: userLat, lng: userLon },
     zoom: 8,
@@ -362,15 +359,13 @@ function renderMarkers(testLocations) {
       lng: testLocations[i].position["lng"],
     };
 
-    //console.log(locations);
-    //console.log(testLocations[i].title);
+    var linkTitle = testLocations[i].title.split(":")[1]; //remove COVID from test location title
+    var linkHref = testLocations[i].contacts[0].www[0]["value"];
 
     //create a new marker google maps marker for each testing site's location object
     markers[i] = new google.maps.Marker({
       position: locations,
       map: map,
-      title: testLocations[i].title,
-      custom_property: testLocations[i].contacts[0].www[0]["value"],
     });
 
     //every time a marker is rendered, add event listener, listening for clicks on any of the markers.
@@ -380,7 +375,7 @@ function renderMarkers(testLocations) {
       //show an info window
       function () {
         let details = new google.maps.InfoWindow({
-          content: this.title + "\n" + this.custom_property,
+          content: `<a target="blank" href=" ${linkHref} ">  ${linkTitle} </a>`,
         });
         details.open(map, this);
       }
@@ -433,26 +428,24 @@ function displayNewLocation(address) {
   });
 }
 
-function displayNewLocation(address){
-
+function displayNewLocation(address) {
   $("#past-locations").show();
 
-  let button  = 
-    $('<button/>', {  //CREATE a new button
-      text: address,  //FILL new button
-      class: "saved-location-button",
-      click: function () {
-        codeAddress(address); 
-      },
-    });
+  let button = $("<button/>", {
+    //CREATE a new button
+    text: address, //FILL new button
+    class: "saved-location-button",
+    click: function () {
+      codeAddress(address);
+    },
+  });
 
-    //APPEND to div
-    $("#past-locations").append(button);
+  //APPEND to div
+  $("#past-locations").append(button);
 }
 
 // Add event listener to state button
 $("#state-location").on("click", function () {
-
   //every time we get a new input location, we need to do three things:
   var address = $("#state").val();
   //1. Pass the location to goole API for lat/lon
@@ -500,15 +493,15 @@ function displaySavedLocations() {
 
       let address = pastAddress[i];
 
-      let button  = 
-          $('<button/>', {  //CREATE a new button
-            text: address,  //FILL new button
-            class: "saved-location-button",
-            click: function () { 
-              //when a button is clicked code the address into Lat long, 
-              codeAddress(address);
-             }
-          });
+      let button = $("<button/>", {
+        //CREATE a new button
+        text: address, //FILL new button
+        class: "saved-location-button",
+        click: function () {
+          //when a button is clicked code the address into Lat long,
+          codeAddress(address);
+        },
+      });
 
       //APPEND to div
       $("#past-locations").append(button);
