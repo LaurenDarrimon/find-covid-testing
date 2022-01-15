@@ -40,9 +40,10 @@
     </ul>
     <ul class="menu">
       <li>
-        <form data-parsley-validate id="form">
-        <input type="number" id="zip-text" placeholder="Search by Zip" data-parsley-type="integer" data-parsley-length="[5, 5]"/>
-        </form>
+        <!-- <form class="form"> -->
+          <!-- data-parsley-type="integer" data-parsley-length="[5, 5]" -- this was previously added to input -->
+        <input type="number" id="zip-text" placeholder="Search by Zip" />
+        <!-- </form> -->
       </li>
       <li>
         <button type="button" id="search-zip" class="button">Search</button>
@@ -142,9 +143,10 @@
         <br />
         <label>
           Search by Zip
-          <form>
-          <input type="number" placeholder="enter zip code" id="zip" data-parsley-type="integer" data-parsley-length="[5, 5]"/><button class="button" id="zip-location">
-          </form>
+          <!-- <form class="form"> -->
+            <!-- data-parsley-type="integer" data-parsley-length="[5, 5]" -- this was previously added to input -->
+          <input type="number" placeholder="enter zip code" id="zip" /><button class="button" id="zip-location">
+          <!-- </form> -->
             Show
           </button>
         </label>
