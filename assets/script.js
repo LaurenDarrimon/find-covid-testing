@@ -431,6 +431,7 @@ function displayNewLocation(address) {
     text: address, //FILL new button
     class: "saved-location-button",
   });
+}
 
 function displayNewLocation(address){
 
