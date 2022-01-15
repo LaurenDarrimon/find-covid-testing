@@ -151,6 +151,13 @@ button:hover {
   }
 }
 
+@media screen and (max-width: 50em) {
+  .testing-img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
 /* Adjust the size of the button on medium and small devices */
 @media screen and (max-width: 50em) {
   #past-locations {
