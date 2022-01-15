@@ -19,9 +19,9 @@ let userLon;
 let covidResponseData = {}; //initialize empty object that we will fill up with covid response data.
 let testLocations = [];
 let markers = []; //set markers to be an empty array to fill with all the marker info
-let pastAddress = []; //empty array that we will fill with past addresses 
+let pastAddress = []; //empty array that we will fill with past addresses
 
-//Map stying from Snazzy Maps 
+//Map stying from Snazzy Maps
 const mapStyleColors = [
   {
     elementType: "labels",
@@ -227,13 +227,11 @@ const mapStyleColors = [
 //Initialize and add the map
 let map, infoWindow, geocoder;
 
-
 // GET CURRENT LOCATION & DRAW MAP
 function mapMaker() {
-
   //This function is called from the script tag in the html via Google Maps API's callback function
   //As soon as the data is retrived, Google Maps API will call this function.
-  
+
   //Render placeholder map that will show on page load
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -34.397, lng: 150.644 },
@@ -243,15 +241,15 @@ function mapMaker() {
   geocoder = new google.maps.Geocoder();
   infoWindow = new google.maps.InfoWindow();
 
-  //RENDER INITIAL SEARCH BUTTON 
+  //RENDER INITIAL SEARCH BUTTON
   const locationBottomBtn = document.createElement("div"); //displaying a div with an image for a button
   locationBottomBtn.innerHTML =
-    '<img src="assets/images/test-graphic.png" width="150px" height="150px">';
-  locationBottomBtn.setAttribute("id", "get-tested-button");   //add class for addition styling in css
+    '<img src="assets/images/test-graphic.png" class="testing-img" width="150px" height="150px">';
+  locationBottomBtn.setAttribute("id", "get-tested-button"); //add class for addition styling in css
   locationBottomBtn.classList.add("div");
   locationBottomBtn.dataset.open = "my-modal";
   map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(
-    locationBottomBtn  //clicking on div will open the search modal
+    locationBottomBtn //clicking on div will open the search modal
   );
 
   const showCurrentLocation = document.getElementById("my-location");
@@ -293,7 +291,7 @@ function mapMaker() {
   });
 }
 
-//If geolocation fails 
+//If geolocation fails
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
   infoWindow.setContent(
@@ -305,7 +303,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   getCovidData();
 }
 
-//API CALL to get COVID data 
+//API CALL to get COVID data
 function getCovidData() {
   $.ajax({
     url:
@@ -318,9 +316,8 @@ function getCovidData() {
       "&limit=10",
     method: "GET",
   }).then(function (response) {
-
     testLocations = response.items;
-  
+
     //console.log(testLocations);
 
     displayLocationList(testLocations);
@@ -329,10 +326,10 @@ function getCovidData() {
 }
 
 //RENDER LIST  - Feed the COVID Data to a function to display the sidebar list of locations
-function displayLocationList(testLocations){
+function displayLocationList(testLocations) {
   let htmlTags = ``;
 
-  //loop through the site location and add a div filled with info for each site 
+  //loop through the site location and add a div filled with info for each site
   for (let i = 0; i < 4; i++) {
     htmlTags += `            
       <div class="site-info">
@@ -391,17 +388,15 @@ function renderMarkers(testLocations) {
   }
 }
 
-
-//GET ADDRESS - function to get lat and lon from address input 
+//GET ADDRESS - function to get lat and lon from address input
 function codeAddress(address) {
   geocoder.geocode({ address: address }, function (results, status) {
-
     //get user Coordinates from address and store them
     userLat = results[0].geometry.location.lat();
     userLon = results[0].geometry.location.lng();
     //console.log("lat/lng from function" + userLat + userLon);
 
-    console.log("function running to get address")
+    console.log("function running to get address");
     console.log(address);
 
     if (status == google.maps.GeocoderStatus.OK) {
@@ -412,20 +407,16 @@ function codeAddress(address) {
         position: results[0].geometry.location,
       });
 
-    // once we have location, call up API
-    getCovidData();
-
+      // once we have location, call up API
+      getCovidData();
     } else {
       alert("Geocode was not successful for the following reason: " + status);
     }
   });
   $(".reveal").foundation("close");
-
-
-
 }
 
-function storeAddress(address){
+function storeAddress(address) {
   //store any addresses the user has searched for in local storage
 
   pastAddress.push(address);
@@ -434,7 +425,12 @@ function storeAddress(address){
   localStorage.setItem("locations", JSON.stringify(pastAddress));
 }
 
-
+function displayNewLocation(address) {
+  let button = $("<button/>", {
+    //CREATE a new button
+    text: address, //FILL new button
+    class: "saved-location-button",
+  });
 
 function displayNewLocation(address){
 
@@ -452,8 +448,6 @@ function displayNewLocation(address){
     //APPEND to div
     $("#past-locations").append(button);
 }
-
-
 
 // Add event listener to state button
 $("#state-location").on("click", function () {
@@ -476,7 +470,7 @@ $("#zip-location").on("click", function () {
   displayNewLocation(address);
 });
 
-// Add event listener to zip button in top nav bar 
+// Add event listener to zip button in top nav bar
 $("#search-zip").on("click", function () {
   var address = $("#zip-text").val();
   codeAddress(address);
@@ -484,28 +478,24 @@ $("#search-zip").on("click", function () {
   displayNewLocation(address);
 });
 
+//CHECK STORAGE -
+function displaySavedLocations() {
+  console.log("Checking for local storage");
 
-//CHECK STORAGE -  
-function displaySavedLocations(){
-
-  console.log ("Checking for local storage");
-
-  //first, check to if there is anything in local storage with the key of locations 
-  if (localStorage.getItem("locations")){
-
+  //first, check to if there is anything in local storage with the key of locations
+  if (localStorage.getItem("locations")) {
     //if so, parse through anything in local stoarage and save it into the array of past addresses
-    pastAddress = JSON.parse(localStorage.getItem("locations"))
-    console.log ("There is something in local storage.");
-    console.log (pastAddress);
+    pastAddress = JSON.parse(localStorage.getItem("locations"));
+    console.log("There is something in local storage.");
+    console.log(pastAddress);
 
-    //turn the display of the past markers on 
+    //turn the display of the past markers on
     $("#past-locations").show();
 
     //loop through the array of saved locations
-    for (i=0; i<pastAddress.length; i++){
-
-      console.log("this is the past address")
-      console.log (pastAddress[i]);
+    for (i = 0; i < pastAddress.length; i++) {
+      console.log("this is the past address");
+      console.log(pastAddress[i]);
 
       let address = pastAddress[i];
 
@@ -522,13 +512,8 @@ function displaySavedLocations(){
       //APPEND to div
       $("#past-locations").append(button);
     }
-
   }
-
 }
 
-//CHECK STORAGE - when the pages load, run the function to check local storage and display any saved locations 
+//CHECK STORAGE - when the pages load, run the function to check local storage and display any saved locations
 displaySavedLocations();
-
-
-
