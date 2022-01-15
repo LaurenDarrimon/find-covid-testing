@@ -511,3 +511,5 @@ function displaySavedLocations() {
 
 //CHECK STORAGE - when the pages load, run the function to check local storage and display any saved locations
 displaySavedLocations();
+
+$('#form').parsley();
