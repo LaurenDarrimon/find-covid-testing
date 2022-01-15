@@ -143,22 +143,24 @@ button:hover {
 /* Adjust the size of the button on medium and small devices */
 @media screen and (max-width: 50em) {
   #get-tested-button {
-    border: 10px solid #d38681;
+    border: none;
     border-radius: 10px;
     width: 100px;
     height: 100px;
     transform: translate(0, -30%);
   }
 }
-
+/* Adjust the size of the testing img background on medium and small devices */
 @media screen and (max-width: 50em) {
   .testing-img {
     width: 100px;
     height: 100px;
+    border: 5px solid #d38681;
+    border-radius: 5px;
   }
 }
 
-/* Adjust the size of the button on medium and small devices */
+/* Adjust the size of previous locations on medium and small devices */
 @media screen and (max-width: 50em) {
   #past-locations {
     width: 50%;
@@ -166,7 +168,7 @@ button:hover {
   }
 }
 
-/* Medium and up */
+/* Adjust the size of previous locations on medium and up devices */
 @media screen and (min-width: 40em) {
   #past-locations {
     width: 30%;
@@ -174,7 +176,7 @@ button:hover {
   }
 }
 
-/* Adjust the size of the Sites near you on medium and small devices */
+/* Adjust the size of the sites near you on medium and small devices */
 @media screen and (max-width: 50em) {
   #box {
     width: 40%;
