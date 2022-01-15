@@ -46,26 +46,39 @@
       </ul>
     </div>
 
-    <!-- Test Site Information  -->
-    <div id="box">
-      <h4 id="title">Sites Near You:</h4>
-      <br>
-      <div id="site-info-wrapper"> 
-        <!-- empty div to populate with data  -->
+    <!-- map as background -->
+    <div id="map"></div>
+  
+      <!-- Test Site Information  -->
+      <div id="box">
+        <h4 id="title">Sites Near You:</h4>
+        <br>
+        <div id="site-info-wrapper"> 
+          <!-- empty div to populate with data  -->
+        </div>
+      </div>
+
+
+    <div id="past-locations" class="row align-bottom align-right">
+      <!-- Past Location Buttons  -->
+      <div  class="cell medium-3  p50">
+        <h4 id="title">Your Past Locations</h4>
+        <br>
+        <div id="past-location-buttons-div"> 
+          <!-- empty div to populate with buttons for past locations  -->
+          <button>Past locale</button>
+          <button>Past locale</button>
+          <button>Past locale</button>
+
+          <br>
+
+
+        </div>
       </div>
     </div>
 
-    <!-- Past Location Buttons  -->
-    <div id="past-locations">
-      <h4 id="title">Your Past Locations</h4>
-      <br>
-      <div id="past-locations"> 
-        <!-- empty div to populate with buttons for past locations  -->
-      </div>
-    </div>
-
+    <!-- MODAL search box -->
     <div class="reveal" id="my-modal" data-reveal>
-      <!-- <-- search box -->
       <div
         class="row grid-x align-center align-middle"
         id="location-search-wrapper"
@@ -103,8 +116,7 @@
       </div>
     </div>
 
-    <!-- map background -->
-    <div id="map"></div>
+
 
     <!-- JQUERY js-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

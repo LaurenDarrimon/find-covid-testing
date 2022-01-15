@@ -81,6 +81,11 @@ body {
 
 #past-locations{
   z-index: 100;
+  transform: translate(200%, -60%);
+  background-color: var(--blue);
+  max-width: 30%;
+  border: solid 10px white;
+  display:none;
 }
 
 #map {

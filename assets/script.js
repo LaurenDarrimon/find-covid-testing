@@ -446,9 +446,13 @@ function pastLocationStorage(){
     console.log ("There is something in local storage.");
     console.log (pastAddress);
 
+    //turn the display of the past markers on 
+    $("#past-locations").show();
+
+
     //loop through the array of addresses and 
     for (i=0; i<pastAddress.length; i++){
-      
+
       console.log (pastAddress[i]);
     }
 
