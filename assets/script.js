@@ -389,6 +389,7 @@ function renderMarkers(testLocations) {
         let details = new google.maps.InfoWindow({
           content: `<a target="blank" href=" ${linkHref} ">  ${linkTitle} </a>`,
         });
+
         details.open(map, this);
 
         toggleBounce(i);
