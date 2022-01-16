@@ -337,7 +337,7 @@ function displayLocationList(testLocations) {
   let htmlTags = ``;
 
   //loop through the site location and add a div filled with info for each site
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < testLocations.length; i++) {
     htmlTags += `            
       <div class="site-info">
         <p class="title"><strong> ${
