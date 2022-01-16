@@ -327,6 +327,7 @@ function getCovidData() {
 
 //RENDER LIST  - Feed the COVID Data to a function to display the sidebar list of locations
 function displayLocationList(testLocations) {
+  console.log(testLocations);
   $("#box").show();
   let htmlTags = ``;
 
@@ -474,6 +475,7 @@ $("#search-zip").on("click", function () {
   displayNewLocation(address);
 });
 
+
 //CHECK STORAGE -
 function displaySavedLocations() {
   console.log("Checking for local storage");
@@ -514,10 +516,8 @@ function displaySavedLocations() {
 //CHECK STORAGE - when the pages load, run the function to check local storage and display any saved locations
 displaySavedLocations();
 
-
-
 //this binds the Parsley library to the form
-// $('.form').parsley();
+$('.form').parsley();
 
-      // display box
-      // $("#box").style.display="block";
+
+
