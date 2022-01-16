@@ -18,7 +18,7 @@ let userLat;
 let userLon;
 let covidResponseData = {}; //initialize empty object that we will fill up with covid response data.
 let testLocations = [];
-let markers = []; //set markers to be an empty array to fill with all the marker info
+// let markers = []; //set markers to be an empty array to fill with all the marker info
 let pastAddress = []; //empty array that we will fill with past addresses
 
 //Map stying from Snazzy Maps
@@ -276,6 +276,7 @@ function mapMaker() {
           var marker = new google.maps.Marker({
             map: map,
             position: pos,
+            animation: google.maps.Animation.DROP,
           });
 
           getCovidData();
@@ -362,37 +363,42 @@ function renderMarkers(testLocations) {
       lng: testLocations[i].position["lng"],
     };
 
-    var linkTitle = testLocations[i].title.split(":")[1]; //remove COVID from test location title
-    var linkHref = testLocations[i].contacts[0].www[0]["value"];
-
     //create a new marker google maps marker for each testing site's location object
-    markers[i] = new google.maps.Marker({
+    bounceMarker = new google.maps.Marker({
       position: locations,
       map: map,
       animation: google.maps.Animation.DROP,
     });
-    marker.addListener("click", toggleBounce);
+    // var bounceMarker = markers[i];
+    // marker.addListener("click", toggleBounce);
     //every time a marker is rendered, add event listener, listening for clicks on any of the markers.
-    markers[i].addListener(
+    bounceMarker.addListener(
       //when marker click happens
       "click",
       //show an info window
       function () {
+        console.log(" i here is", i);
+        var linkTitle = testLocations[i].title.split(":")[1]; //remove COVID from test location title
+        var linkHref = testLocations[i].contacts[0].www[0]["value"];
+
         let details = new google.maps.InfoWindow({
           content: `<a target="blank" href=" ${linkHref} ">  ${linkTitle} </a>`,
         });
         details.open(map, this);
+
+        toggleBounce(bounceMarker);
       }
     );
   }
 }
 
-function toggleBounce() {
-  if (marker.getAnimation() !== null) {
-    marker.setAnimation(null);
+// add bounce animation to each marker on map
+function toggleBounce(bounceMarker) {
+  if (bounceMarker.getAnimation() !== null) {
+    bounceMarker.setAnimation(null);
   } else {
     console.log("adding marker animations here");
-    marker.setAnimation(google.maps.Animation.BOUNCE);
+    bounceMarker.setAnimation(google.maps.Animation.BOUNCE);
   }
 }
 
