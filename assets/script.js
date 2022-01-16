@@ -444,14 +444,6 @@ function storeAddress(address) {
 }
 
 function displayNewLocation(address) {
-  let button = $("<button/>", {
-    //CREATE a new button
-    text: address, //FILL new button
-    class: "saved-location-button",
-  });
-}
-
-function displayNewLocation(address) {
   $("#past-locations").show();
 
   let button = $("<button/>", {
@@ -537,5 +529,31 @@ function displaySavedLocations() {
 //CHECK STORAGE - when the pages load, run the function to check local storage and display any saved locations
 displaySavedLocations();
 
-//this binds the Parsley library to the form
-// $(".form").parsley();
+
+//REDIRECT SECTION 
+
+//SEARCH BAR FROM OTHER PAGES
+
+//add event listener to search bars off the main page  
+// if someone submits a search from the nav bar
+//redirect to the index.html with a search query.
+
+// Add event listener to zip button in top nav bar
+$("#side-page-button").on("click", function () {
+});
+
+
+//CHECK URL FOR SEARCH QUERY, on page load
+checkQueryURL();
+
+//CHECK URL FOR SEARCH QUERY, on page load
+
+function checkQueryURL(){
+  //check to see if there is a query at the end of the URL
+  if (document.location.search){
+    console.log("there is a query in the URL" + document.location.search)
+
+  }
+}
+
+//END OF REDIRECT SECTION
