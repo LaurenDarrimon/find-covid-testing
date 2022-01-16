@@ -277,6 +277,7 @@ function mapMaker() {
             map: map,
             position: pos,
           });
+
           getCovidData();
         },
         () => {
@@ -368,8 +369,9 @@ function renderMarkers(testLocations) {
     markers[i] = new google.maps.Marker({
       position: locations,
       map: map,
+      animation: google.maps.Animation.DROP,
     });
-
+    marker.addListener("click", toggleBounce);
     //every time a marker is rendered, add event listener, listening for clicks on any of the markers.
     markers[i].addListener(
       //when marker click happens
@@ -382,6 +384,15 @@ function renderMarkers(testLocations) {
         details.open(map, this);
       }
     );
+  }
+}
+
+function toggleBounce() {
+  if (marker.getAnimation() !== null) {
+    marker.setAnimation(null);
+  } else {
+    console.log("adding marker animations here");
+    marker.setAnimation(google.maps.Animation.BOUNCE);
   }
 }
 
@@ -460,7 +471,6 @@ $("#state-location").on("click", function () {
 
 // Add event listener to zip button
 $("#zip-location").on("click", function () {
-
   var address = $("#zip").val();
   codeAddress(address);
   storeAddress(address);
@@ -474,7 +484,6 @@ $("#search-zip").on("click", function () {
   storeAddress(address);
   displayNewLocation(address);
 });
-
 
 //CHECK STORAGE -
 function displaySavedLocations() {
@@ -517,7 +526,4 @@ function displaySavedLocations() {
 displaySavedLocations();
 
 //this binds the Parsley library to the form
-$('.form').parsley();
-
-
-
+// $(".form").parsley();
