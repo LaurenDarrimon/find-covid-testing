@@ -25,19 +25,16 @@
     <div class="top-bar">
         <ul class="menu align-middle">
           <li class="menu-text align-middle">
-            <img src="assets/images/test-map-logo.png"/>
+            <a href="index.html">
+              <img src="assets/images/test-map-logo.png"/>
+            </a>
           </li>
-          <li>
-            <a href="#">About this Data</a>
-          </li>
-          <li><a href="#">Our Team</a></li>
-        </ul>
         <ul class="menu align-center">
           <li>
             <h1>Find a COVID Testing Site</h1>
           </li>
         </ul>
-        <ul class="menu">
+        <ul class="menu align-middle">
           <li><input type="search" placeholder="Search by Zip"></li>
           <li><button type="button" class="button">Search</button></li>
         </ul>
@@ -58,26 +55,34 @@
         </div>
 
         <div class="cell medium-4 float-right">
-          <img src="assets/images/test-graphic.png" />
+          <a href="index.html"><img src="assets/images/test-graphic.png" /></a>
         </div>
 
-        <div class="cell card medium-5">
+        <div class="cell card medium-5 dev-info">
           <div class="card-section">
-            <img src="assets/images/test-graphic.png">
+            <img src="assets/images/google-maps.png">
           </div>
           <div class="card-section">
             <h3>Google Maps API</h3>
-            <p>This is a simple card with an image inside a `.card-section`.</p>
+            <p>We used Google Maps API to:
+              <ul>
+                <li>retrieve user location</li>
+                <li>geocode input address to latitude & longitude</li>
+                <li>render map & testing site markers</li>
+              </ul>
+            </p>
+            <a href="https://developers.google.com/maps"><button>Learn More</button></a>
           </div>
         </div>
 
-        <div class="cell card medium-5">
+        <div class="cell card medium-5 dev-info">
           <div class="card-section">
-            <img src="assets/images/test-graphic.png">
+            <img src="assets/images/here-api.png">
           </div>
           <div class="card-section">
             <h3>Here Developer API</h3>
-            <p>This is a simple card with an image inside a `.card-section`.</p>
+            <p>We used Here's geodonig API with a COVID query to pull up our COVID testing site data.</p>
+            <a href="https://developer.here.com/blog/finding-covid-19-testing-sites"><button>Learn More</button></a>
           </div>
         </div>
 
@@ -90,33 +95,42 @@
           </h2>
         </div>
 
-        <div class="cell card medium-3">
+        <div class="cell card medium-3 team-info">
           <div class="card-section">
-            <img src="assets/images/test-graphic.png">
+          <img src="assets/images/leslie.jpg" />
           </div>
           <div class="card-section">
             <h3>Leslie</h3>
-            <p>This is a simple card with an image inside a `.card-section`.</p>
+            <p>
+              <a href="#"><button>Linkedin</button></a>
+              <a href="#"><button>GitHub</button></a>
+            </p>
           </div>
         </div>
 
-        <div class="cell card medium-3">
+        <div class="cell card medium-3 team-info">
           <div class="card-section">
             <img src="assets/images/test-graphic.png">
           </div>
           <div class="card-section">
             <h3>Iman</h3>
-            <p>This is a simple card with an image inside a `.card-section`.</p>
+            <p>
+              <a href="#"><button>Linkedin</button></a>
+              <a href="#"><button>GitHub</button></a>
+            </p>
           </div>
         </div>
 
-        <div class="cell card medium-3">
+        <div class="cell card medium-3 team-info">
           <div class="card-section">
-            <img src="assets/images/test-graphic.png">
+            <img src="assets/images/lauren.jpg">
           </div>
           <div class="card-section">
             <h3>Lauren</h3>
-            <p>This is a simple card with an image inside a `.card-section`.</p>
+            <p>
+              <a href="https://www.linkedin.com/in/lauren-lalita-duker-9537b1201"><button>Linkedin</button></a>
+              <a href="https://github.com/LaurenDarrimon"><button>GitHub</button></a>
+            </p>
           </div>
         </div>
       </div>
