@@ -46,6 +46,14 @@
   .card {
       margin:40px;
   }
+
+  .dev-info{
+      background-color: var(--green);
+  }
+
+  .team-info{
+      background-color: var(--blue);
+  }
   
   
 
