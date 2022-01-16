@@ -533,17 +533,21 @@ displaySavedLocations();
 //REDIRECT SECTION 
 
 //SEARCH BAR FROM OTHER PAGES
-
-
-//add event listener to search bars on side page nav   
+//add event listener to search bars on the nav bars on the side pages   
 $("#side-page-button").on("click", function () {
   //redirect to the index.html with a search query.
   console.log("side-page button was clicked.")
+
+  //grab and store value entered from input form
+  let redirectZip = $('#side-page-input').val();
+
+  console.log(redirectZip);
+
   console.log (window.location.href)
 
-  window.location.href = 'index.html'
+  //redirect to the homepage with the zip query added on the end as a search string 
+  window.location.href = 'index.html' + '?search=' + redirectZip
  
-
 });
 
 
