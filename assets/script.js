@@ -534,12 +534,16 @@ displaySavedLocations();
 
 //SEARCH BAR FROM OTHER PAGES
 
-//add event listener to search bars off the main page  
-// if someone submits a search from the nav bar
-//redirect to the index.html with a search query.
 
-// Add event listener to zip button in top nav bar
+//add event listener to search bars on side page nav   
 $("#side-page-button").on("click", function () {
+  //redirect to the index.html with a search query.
+  console.log("side-page button was clicked.")
+  console.log (window.location.href)
+
+  window.location.href = 'index.html'
+ 
+
 });
 
 
