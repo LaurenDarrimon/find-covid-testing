@@ -22,10 +22,9 @@ Once the users location is determined, they will be able to view test site infor
 ## Live Site
 
 * [Map-A-Test: Find a Covid Testing Site Near You](https://laurendarrimon.github.io/find-covid-testing/)
-
+![Image of Deployed Site](assets/images/deployedsite-image.png)
 
 ## Demo
-![Image of Deployed Site](assets/images/deployedsite-image.png)
 ![Gif of Deployed Site](assets/images/finalpage.gif)
 
 ## Technology Stack

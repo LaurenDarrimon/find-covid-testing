@@ -339,7 +339,7 @@ function displayLocationList(testLocations) {
   let htmlTags = ``;
 
   //loop through the site location and add a div filled with info for each site
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < testLocations.length; i++) {
     htmlTags += `            
       <div class="site-info">
         <p class="title"><strong> ${
@@ -484,9 +484,11 @@ $("#state-location").on("click", function () {
 // Add event listener to zip button
 $("#zip-location").on("click", function () {
   var address = $("#zip").val();
-  codeAddress(address);
-  storeAddress(address);
-  displayNewLocation(address);
+  if ($("#zip").parsley().validate() == true) {
+    codeAddress(address);
+    storeAddress(address);
+    displayNewLocation(address);
+  }
 });
 
 // Add event listener to zip button in top nav bar

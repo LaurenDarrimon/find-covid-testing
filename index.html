@@ -150,16 +150,14 @@
         <br />
         <label>
           Search by Zip</label>
-          <form data-parsley-validate id="form">
-            <div>
-            <input type="number" placeholder="enter zip code" id="zip" data-parsley-type="integer"
-              data-parsley-length="[5, 5]" />
-            
-              <button class="button" id="zip-location">Show</button>
-            </div>
-          </form>
 
-          <br />
+
+
+        <div data-parsley-validate id="form">
+          <input type="number" placeholder="enter zip code" id="zip" data-parsley-type="integer"
+            data-parsley-length="[5, 5]" />
+
+          <button class="button" id="zip-location">Show</button>
         </div>
       </div>
     </div>
@@ -186,10 +184,6 @@
   <!-- CUSTOM JS-->
   <script src="assets/script.js"></script>
 
-
-
-    <!-- PARSLEY js -->
-    <!-- <script src="/parsley.min.js"></script> -->
 
     <!--GOOGLE map -->
     <script
