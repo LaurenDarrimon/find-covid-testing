@@ -1,74 +1,84 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Map-A-Test: Find a COVID Testing Site Near Me</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Map-A-Test: Find a COVID Testing Site Near Me</title>
 
-  <!-- JQUERY css-->
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <!-- JQUERY css-->
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
 
-  <!-- FOUNDATION css-->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css"
-    crossorigin="anonymous" />
+    <!-- FOUNDATION css-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/css/foundation.min.css"
+      crossorigin="anonymous"
+    />
 
-  <!-- CUSTOM css-->
-  <link rel="stylesheet" href="assets/style.css" />
-</head>
+    <!-- PARSLEY js -->
+    <!-- <script src="http://parsleyjs.org/dist/parsley.js"></script> -->
 
-<body>
-  <!-- top nav bar -->
-  <div class="top-bar">
-    <ul class="menu align-middle">
-      <li class="menu-text align-middle">
-        <img src="assets/images/test-map-logo.png" />
-      </li>
-      <li>
-        <a href="#">About this Data</a>
-      </li>
-      <li><a href="#">Our Team</a></li>
-    </ul>
-    <ul class="menu align-center">
-      <li>
-        <h1>Find a COVID Testing Site</h1>
-      </li>
-    </ul>
-    <ul class="menu">
-      <li>
-        <!-- <form class="form"> -->
-        <!-- data-parsley-type="integer" data-parsley-length="[5, 5]" -- this was previously added to input -->
-        <input type="number" id="zip-text" placeholder="Search by Zip" />
-        <!-- </form> -->
-      </li>
-      <li>
-        <button type="button" id="search-zip" class="button">Search</button>
-      </li>
-    </ul>
-  </div>
+    <!-- CUSTOM css-->
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
 
-  <!-- map as background -->
-  <div id="map"></div>
-
-  <!-- Test Site Information  -->
-  <div id="box">
-    <h4 id="title">Sites Near You:</h4>
-    <br />
-    <div id="site-info-wrapper">
-      <!-- empty div to populate with data  -->
+  <body>
+    <!-- top nav bar -->
+    <div class="top-bar">
+      <ul class="menu align-middle">
+        <li class="menu-text align-middle">
+          <img src="assets/images/test-map-logo.png" />
+        </li>
+        <li>
+          <a href="#">About this Data</a>
+        </li>
+        <li><a href="#">Our Team</a></li>
+      </ul>
+      <ul class="menu align-center">
+        <li>
+          <h1>Find a COVID Testing Site</h1>
+        </li>
+      </ul>
+      <ul class="menu">
+        <li>
+          <form class="form">
+            <!-- data-parsley-type="integer" data-parsley-length="[5, 5]" -- this was previously added to input -->
+            <input type="number" id="zip-text" placeholder="Search by Zip" />
+          </form>
+        </li>
+        <li>
+          <button type="button" id="search-zip" class="button">Search</button>
+        </li>
+      </ul>
     </div>
-  </div>
 
-  <div id="past-locations">
-    <!-- Past Location Buttons  -->
-    <div>
-      <h4 id="title">Your Saved Locations</h4>
+    <!-- map as background -->
+    <div id="map"></div>
 
-      <div id="past-location-buttons-div">
-        <!-- empty div to populate with buttons for past locations  -->
+    <!-- Test Site Information  -->
+    <div id="box">
+      <h4 id="title">Sites Near You:</h4>
+      <br />
+      <div id="site-info-wrapper">
+        <!-- empty div to populate with data  -->
       </div>
     </div>
+
+
+    <div id="past-locations">
+      <!-- Past Location Buttons  -->
+      <div>
+        <h4 id="title">Your Saved Locations</h4>
+
+        <div id="past-location-buttons-div">
+          <!-- empty div to populate with buttons for past locations  -->
+        </div>
+
   </div>
 
   <!-- MODAL search box -->
@@ -148,18 +158,26 @@
               <button class="button" id="zip-location">Show</button>
             </div>
           </form>
+
+          <br />
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- JQUERY js-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- JQUERY js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
 
-  <!-- FOUNDATION js -->
-  <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js"
-    crossorigin="anonymous"></script>
+
+    <!-- FOUNDATION js -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- CUSTOM JS-->
+    <script src="assets/script.js"></script>
 
   <!-- PARSLEY js -->
   <script src="http://parsleyjs.org/dist/parsley.js"></script>
@@ -170,10 +188,14 @@
 
 
 
+    <!-- PARSLEY js -->
+    <!-- <script src="/parsley.min.js"></script> -->
 
-  <!--GOOGLE map -->
-  <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn-EsceBwuoTW01nAWUbsPb0pl86wAWMY&callback=mapMaker&v=weekly"></script>
-</body>
-
+    <!--GOOGLE map -->
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCn-EsceBwuoTW01nAWUbsPb0pl86wAWMY&callback=mapMaker&v=weekly"
+    ></script>
+  </body>
 </html>

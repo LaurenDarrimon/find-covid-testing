@@ -281,7 +281,9 @@ function mapMaker() {
           var marker = new google.maps.Marker({
             map: map,
             position: pos,
+            animation: google.maps.Animation.DROP,
           });
+
           getCovidData();
         },
         () => {
@@ -366,27 +368,42 @@ function renderMarkers(testLocations) {
       lng: testLocations[i].position["lng"],
     };
 
-    var linkTitle = testLocations[i].title.split(":")[1]; //remove COVID from test location title
-    var linkHref = testLocations[i].contacts[0].www[0]["value"];
-
     //create a new marker google maps marker for each testing site's location object
     markers[i] = new google.maps.Marker({
       position: locations,
       map: map,
+      animation: google.maps.Animation.DROP,
     });
-
+    // var bounceMarker = markers[i];
+    // marker.addListener("click", toggleBounce);
     //every time a marker is rendered, add event listener, listening for clicks on any of the markers.
     markers[i].addListener(
       //when marker click happens
       "click",
       //show an info window
       function () {
+        console.log(" i here is", i);
+        var linkTitle = testLocations[i].title.split(":")[1]; //remove COVID from test location title
+        var linkHref = testLocations[i].contacts[0].www[0]["value"];
+
         let details = new google.maps.InfoWindow({
           content: `<a target="blank" href=" ${linkHref} ">  ${linkTitle} </a>`,
         });
         details.open(map, this);
+
+        toggleBounce(i);
       }
     );
+  }
+}
+
+// add bounce animation to each marker on map
+function toggleBounce(bounceMarkerIndex) {
+  for (i = 0; i < markers.length; i++) {
+    markers[i].setAnimation(null);
+    if (i === bounceMarkerIndex) {
+      markers[i].setAnimation(google.maps.Animation.BOUNCE);
+    }
   }
 }
 
@@ -465,7 +482,6 @@ $("#state-location").on("click", function () {
 
 // Add event listener to zip button
 $("#zip-location").on("click", function () {
-
   var address = $("#zip").val();
   codeAddress(address);
   storeAddress(address);
@@ -479,7 +495,6 @@ $("#search-zip").on("click", function () {
   storeAddress(address);
   displayNewLocation(address);
 });
-
 
 //CHECK STORAGE -
 function displaySavedLocations() {
@@ -522,6 +537,8 @@ function displaySavedLocations() {
 displaySavedLocations();
 
 
+//this binds the Parsley library to the form
+// $(".form").parsley();
 
 
 
