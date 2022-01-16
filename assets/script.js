@@ -18,7 +18,7 @@ let userLat;
 let userLon;
 let covidResponseData = {}; //initialize empty object that we will fill up with covid response data.
 let testLocations = [];
-// let markers = []; //set markers to be an empty array to fill with all the marker info
+let markers = []; //set markers to be an empty array to fill with all the marker info
 let pastAddress = []; //empty array that we will fill with past addresses
 
 //Map stying from Snazzy Maps
@@ -364,7 +364,7 @@ function renderMarkers(testLocations) {
     };
 
     //create a new marker google maps marker for each testing site's location object
-    bounceMarker = new google.maps.Marker({
+    markers[i] = new google.maps.Marker({
       position: locations,
       map: map,
       animation: google.maps.Animation.DROP,
@@ -372,7 +372,7 @@ function renderMarkers(testLocations) {
     // var bounceMarker = markers[i];
     // marker.addListener("click", toggleBounce);
     //every time a marker is rendered, add event listener, listening for clicks on any of the markers.
-    bounceMarker.addListener(
+    markers[i].addListener(
       //when marker click happens
       "click",
       //show an info window
@@ -386,7 +386,7 @@ function renderMarkers(testLocations) {
         });
         details.open(map, this);
 
-        toggleBounce(bounceMarker);
+        toggleBounce(markers[i]);
       }
     );
   }
