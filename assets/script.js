@@ -386,19 +386,19 @@ function renderMarkers(testLocations) {
         });
         details.open(map, this);
 
-        toggleBounce(markers[i]);
+        toggleBounce(i);
       }
     );
   }
 }
 
 // add bounce animation to each marker on map
-function toggleBounce(bounceMarker) {
-  if (bounceMarker.getAnimation() !== null) {
-    bounceMarker.setAnimation(null);
-  } else {
-    console.log("adding marker animations here");
-    bounceMarker.setAnimation(google.maps.Animation.BOUNCE);
+function toggleBounce(bounceMarkerIndex) {
+  for (i = 0; i < markers.length; i++) {
+    markers[i].setAnimation(null);
+    if (i === bounceMarkerIndex) {
+      markers[i].setAnimation(google.maps.Animation.BOUNCE);
+    }
   }
 }
 
