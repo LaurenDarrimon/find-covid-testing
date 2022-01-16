@@ -467,9 +467,11 @@ $("#state-location").on("click", function () {
 $("#zip-location").on("click", function () {
 
   var address = $("#zip").val();
-  codeAddress(address);
-  storeAddress(address);
-  displayNewLocation(address);
+  if ($("#zip").parsley().validate() == true) {
+    codeAddress(address);
+    storeAddress(address);
+    displayNewLocation(address);
+  }
 });
 
 // Add event listener to zip button in top nav bar
