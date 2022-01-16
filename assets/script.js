@@ -7,13 +7,11 @@
 // We'll take the users lat/lon and input it into the COVID api/url
 // The COVID api will return testing locations around that lat/lon
 
-
-
 // Initialize Foundation framework to be interactive and perfomrm js functions
 $(document).foundation();
 
 //this binds the Parsley library to the form
-$('#form').parsley();
+$("#form").parsley();
 
 //test COVID api
 let covidApiKey = "K39YR7g51qETSXocQ0uyEDBxgxXWFZSILwgtqcrNaP8";
@@ -539,9 +537,5 @@ function displaySavedLocations() {
 //CHECK STORAGE - when the pages load, run the function to check local storage and display any saved locations
 displaySavedLocations();
 
-
 //this binds the Parsley library to the form
 // $(".form").parsley();
-
-
-
