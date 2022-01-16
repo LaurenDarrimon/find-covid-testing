@@ -439,7 +439,7 @@ function storeAddress(address) {
 
   pastAddress.push(address);
 
-  console.log(pastAddress);
+  //console.log(pastAddress);
   localStorage.setItem("locations", JSON.stringify(pastAddress));
 }
 
@@ -484,6 +484,10 @@ $("#zip-location").on("click", function () {
 // Add event listener to zip button in top nav bar
 $("#search-zip").on("click", function () {
   var address = $("#zip-text").val();
+
+  //console.log('THIS IS WHAT ADDRESS GETS PASSED TO GEOCODE')
+  //console.log (address)
+
   codeAddress(address);
   storeAddress(address);
   displayNewLocation(address);
@@ -491,7 +495,7 @@ $("#search-zip").on("click", function () {
 
 //CHECK STORAGE -
 function displaySavedLocations() {
-  console.log("Checking for local storage");
+  //console.log("Checking for local storage");
 
   //first, check to if there is anything in local storage with the key of locations
   if (localStorage.getItem("locations")) {
@@ -505,8 +509,8 @@ function displaySavedLocations() {
 
     //loop through the array of saved locations
     for (i = 0; i < pastAddress.length; i++) {
-      console.log("this is the past address");
-      console.log(pastAddress[i]);
+      //console.log("this is the past address");
+      //console.log(pastAddress[i]);
 
       let address = pastAddress[i];
 
@@ -536,14 +540,13 @@ displaySavedLocations();
 //add event listener to search bars on the nav bars on the side pages   
 $("#side-page-button").on("click", function () {
   //redirect to the index.html with a search query.
-  console.log("side-page button was clicked.")
+  //console.log("side-page button was clicked.")
 
   //grab and store value entered from input form
   let redirectZip = $('#side-page-input').val();
 
   console.log(redirectZip);
-
-  console.log (window.location.href)
+  //console.log (window.location.href)
 
   //redirect to the homepage with the zip query added on the end as a search string 
   window.location.href = 'index.html' + '?search=' + redirectZip
@@ -552,16 +555,29 @@ $("#side-page-button").on("click", function () {
 
 
 //CHECK URL FOR SEARCH QUERY, on page load
-checkQueryURL();
-
-//CHECK URL FOR SEARCH QUERY, on page load
-
 function checkQueryURL(){
   //check to see if there is a query at the end of the URL
   if (document.location.search){
     console.log("there is a query in the URL" + document.location.search)
 
+    //if so, get the address off the end of search string
+    let address = document.location.search.split('=')[1];
+    console.log(address)
+
+    //make sure the map is drawn first
+
+
+    //pass the address to the functions to display the new sites and store in local storage
+
+    storeAddress(address);
+    displayNewLocation(address);
+
   }
 }
+
+//CHECK URL FOR SEARCH QUERY, on page load
+checkQueryURL();
+
+
 
 //END OF REDIRECT SECTION
