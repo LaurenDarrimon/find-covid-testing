@@ -556,14 +556,16 @@ $("#side-page-button").on("click", function () {
   //redirect to the index.html with a search query.
   //console.log("side-page button was clicked.")
 
-  //grab and store value entered from input form
-  let redirectZip = $("#side-page-input").val();
+    if ($("#side-page-input").parsley().validate() == true){
+      //grab and store value entered from input form
+      let redirectZip = $("#side-page-input").val();
 
-  console.log(redirectZip);
-  //console.log (window.location.href)
+      console.log(redirectZip);
+      //console.log (window.location.href)
 
-  //redirect to the homepage with the zip query added on the end as a search string
-  window.location.href = "index.html" + "?search=" + redirectZip;
+      //redirect to the homepage with the zip query added on the end as a search string
+      window.location.href = "index.html" + "?search=" + redirectZip;
+    }
 });
 
 //CHECK URL FOR SEARCH QUERY, after the mapMaker fxn finishes running 
