@@ -14,6 +14,7 @@ $(document).foundation();
 $("#form").parsley();
 
 $("#side-form").parsley();
+$("#form").parsley();
 $(".loading-container").hide();
 
 
@@ -553,17 +554,20 @@ displaySavedLocations();
 //SEARCH BAR FROM OTHER PAGES
 //add event listener to search bars on the nav bars on the side pages
 $("#side-page-button").on("click", function () {
-  //redirect to the index.html with a search query.
-  //console.log("side-page button was clicked.")
+    //if the form is valid
+    if ($("#side-page-input").parsley().validate() == true){
+      //redirect to the index.html with a search query.
+      //console.log("side-page button was clicked.")
 
-  //grab and store value entered from input form
-  let redirectZip = $("#side-page-input").val();
+      //grab and store value entered from input form
+      let redirectZip = $("#side-page-input").val();
 
-  console.log(redirectZip);
-  //console.log (window.location.href)
+      console.log(redirectZip);
+      //console.log (window.location.href)
 
-  //redirect to the homepage with the zip query added on the end as a search string
-  window.location.href = "index.html" + "?search=" + redirectZip;
+      //redirect to the homepage with the zip query added on the end as a search string
+      window.location.href = "index.html" + "?search=" + redirectZip;
+    }
 });
 
 //CHECK URL FOR SEARCH QUERY, after the mapMaker fxn finishes running 
