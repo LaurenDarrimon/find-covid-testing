@@ -12,7 +12,7 @@ $(document).foundation();
 
 //this binds the Parsley library to the form
 $("#form").parsley();
-$("#side-form").parsley();
+// $("#side-form").parsley();
 
 //test COVID api
 let covidApiKey = "K39YR7g51qETSXocQ0uyEDBxgxXWFZSILwgtqcrNaP8";
@@ -493,10 +493,11 @@ $("#search-zip").on("click", function () {
 
   //console.log('THIS IS WHAT ADDRESS GETS PASSED TO GEOCODE')
   //console.log (address)
-
+  if ($("#zip-text").parsley().validate() == true) {
   codeAddress(address);
   storeAddress(address);
   displayNewLocation(address);
+  }
 });
 
 //CHECK STORAGE -
