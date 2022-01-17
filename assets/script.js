@@ -12,6 +12,7 @@ $(document).foundation();
 
 //this binds the Parsley library to the form
 $("#form").parsley();
+$("#side-form").parsley();
 
 //test COVID api
 let covidApiKey = "K39YR7g51qETSXocQ0uyEDBxgxXWFZSILwgtqcrNaP8";
@@ -569,7 +570,7 @@ function checkQueryURL(){
     console.log(address)
 
     //pass the address to the geocoder
-    //codeAddress(address);
+    codeAddress(address);
 
     //pass the address to the functions to display the new sites and store in local storage
     storeAddress(address);

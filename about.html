@@ -29,14 +29,20 @@
               <img src="assets/images/test-map-logo.png"/>
             </a>
           </li>
+        </ul>
         <ul class="menu align-center">
           <li>
             <h1>Find a COVID Testing Site</h1>
           </li>
         </ul>
-        <ul class="menu align-middle">
-          <li><input type="search" id="side-page-input" placeholder="Search by Zip"></li>
-          <li><button type="button" id="side-page-button" class="button">Search</button></li>
+        <ul class="menu align center">
+          <li>
+            <div data-parsley-validate id="side-form">
+              <input type="number" placeholder="enter zip code" id="side-page-input" data-parsley-type="integer"
+                data-parsley-length="[5, 5]" />
+              <button class="button" id="side-page-button">SEARCH</button>
+            </div>
+          </li>
         </ul>
     </div>
 
