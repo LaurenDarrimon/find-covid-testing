@@ -492,10 +492,11 @@ $("#search-zip").on("click", function () {
 
   //console.log('THIS IS WHAT ADDRESS GETS PASSED TO GEOCODE')
   //console.log (address)
-
+  if ($("#zip-text").parsley().validate() == true) {
   codeAddress(address);
   storeAddress(address);
   displayNewLocation(address);
+  }
 });
 
 //CHECK STORAGE -
