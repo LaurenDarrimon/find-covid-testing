@@ -29,14 +29,20 @@
               <img src="assets/images/test-map-logo.png"/>
             </a>
           </li>
+        </ul>
         <ul class="menu align-center">
           <li>
             <h1>Find a COVID Testing Site</h1>
           </li>
         </ul>
-        <ul class="menu align-middle">
-          <li><input type="search" placeholder="Search by Zip"></li>
-          <li><button type="button" class="button">Search</button></li>
+        <ul class="menu align center">
+          <li>
+            <div data-parsley-validate id="side-form">
+              <input type="number" placeholder="enter zip code" id="side-page-input" data-parsley-type="integer"
+                data-parsley-length="[5, 5]" />
+              <button class="button" id="side-page-button">SEARCH</button>
+            </div>
+          </li>
         </ul>
     </div>
 
@@ -146,6 +152,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+
+    <!-- PARSLEY js -->
+    <script src="http://parsleyjs.org/dist/parsley.js"></script>
+    <script src="parsley.min.js"></script>
 
     <!-- FOUNDATION js -->
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.7.4/dist/js/foundation.min.js" crossorigin="anonymous"></script>

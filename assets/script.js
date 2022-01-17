@@ -12,6 +12,7 @@ $(document).foundation();
 
 //this binds the Parsley library to the form
 $("#form").parsley();
+$("#side-form").parsley();
 
 //test COVID api
 let covidApiKey = "K39YR7g51qETSXocQ0uyEDBxgxXWFZSILwgtqcrNaP8";
@@ -294,6 +295,10 @@ function mapMaker() {
       handleLocationError(false, infoWindow, map.getCenter());
     }
   });
+
+  //CHECK URL FOR SEARCH QUERY, 
+  //once the map is loaded, see if there is a search query from a side page 
+  checkQueryURL();
 }
 
 //If geolocation fails
@@ -439,16 +444,8 @@ function storeAddress(address) {
 
   pastAddress.push(address);
 
-  console.log(pastAddress);
+  //console.log(pastAddress);
   localStorage.setItem("locations", JSON.stringify(pastAddress));
-}
-
-function displayNewLocation(address) {
-  let button = $("<button/>", {
-    //CREATE a new button
-    text: address, //FILL new button
-    class: "saved-location-button",
-  });
 }
 
 function displayNewLocation(address) {
@@ -492,6 +489,10 @@ $("#zip-location").on("click", function () {
 // Add event listener to zip button in top nav bar
 $("#search-zip").on("click", function () {
   var address = $("#zip-text").val();
+
+  //console.log('THIS IS WHAT ADDRESS GETS PASSED TO GEOCODE')
+  //console.log (address)
+
   codeAddress(address);
   storeAddress(address);
   displayNewLocation(address);
@@ -499,7 +500,7 @@ $("#search-zip").on("click", function () {
 
 //CHECK STORAGE -
 function displaySavedLocations() {
-  console.log("Checking for local storage");
+  //console.log("Checking for local storage");
 
   //first, check to if there is anything in local storage with the key of locations
   if (localStorage.getItem("locations")) {
@@ -513,8 +514,8 @@ function displaySavedLocations() {
 
     //loop through the array of saved locations
     for (i = 0; i < pastAddress.length; i++) {
-      console.log("this is the past address");
-      console.log(pastAddress[i]);
+      //console.log("this is the past address");
+      //console.log(pastAddress[i]);
 
       let address = pastAddress[i];
 
@@ -537,5 +538,44 @@ function displaySavedLocations() {
 //CHECK STORAGE - when the pages load, run the function to check local storage and display any saved locations
 displaySavedLocations();
 
-//this binds the Parsley library to the form
-// $(".form").parsley();
+
+//REDIRECT SECTION 
+
+//SEARCH BAR FROM OTHER PAGES
+//add event listener to search bars on the nav bars on the side pages   
+$("#side-page-button").on("click", function () {
+  //redirect to the index.html with a search query.
+  //console.log("side-page button was clicked.")
+
+  //grab and store value entered from input form
+  let redirectZip = $('#side-page-input').val();
+
+  console.log(redirectZip);
+  //console.log (window.location.href)
+
+  //redirect to the homepage with the zip query added on the end as a search string 
+  window.location.href = 'index.html' + '?search=' + redirectZip
+ 
+});
+
+
+//CHECK URL FOR SEARCH QUERY, on page load
+function checkQueryURL(){
+  //check to see if there is a query at the end of the URL
+  if (document.location.search){
+    //console.log("there is a query in the URL" + document.location.search)
+
+    //if so, get the address off the end of search string
+    let address = document.location.search.split('=')[1];
+    console.log(address)
+
+    //pass the address to the geocoder
+    codeAddress(address);
+
+    //pass the address to the functions to display the new sites and store in local storage
+    storeAddress(address);
+    displayNewLocation(address);
+  }
+}
+
+//END OF REDIRECT SECTION
