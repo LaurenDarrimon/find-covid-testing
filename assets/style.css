@@ -215,6 +215,17 @@ button:hover {
   #past-locations {
     width: 50%;
     height: 40%;
+    clear: both;
+    position: fixed;
+    bottom: 0;
+  }
+
+  #box {
+    width: 50%;
+    height: 40%;
+    clear: both;
+    position: fixed;
+    bottom: 200px;
   }
 }
 
@@ -227,9 +238,10 @@ button:hover {
 }
 
 /* Adjust the size of the sites near you on medium and small devices */
-@media screen and (max-width: 50em) {
+/* @media screen and (max-width: 50em) {
   #box {
     width: 40%;
     height: 40%;
+    clear: both;
   }
-}
+} */
