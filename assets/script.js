@@ -296,8 +296,8 @@ function mapMaker() {
     }
   });
 
-  //CHECK URL FOR SEARCH QUERY, 
-  //once the map is loaded, see if there is a search query from a side page 
+  //CHECK URL FOR SEARCH QUERY,
+  //once the map is loaded, see if there is a search query from a side page
   checkQueryURL();
 }
 
@@ -327,9 +327,6 @@ function getCovidData() {
     method: "GET",
   }).then(function (response) {
     testLocations = response.items;
-
-    //console.log(testLocations);
-
     displayLocationList(testLocations);
     renderMarkers(testLocations);
   });
@@ -337,7 +334,6 @@ function getCovidData() {
 
 //RENDER LIST  - Feed the COVID Data to a function to display the sidebar list of locations
 function displayLocationList(testLocations) {
-  console.log(testLocations);
   $("#box").show();
   let htmlTags = ``;
 
@@ -346,10 +342,10 @@ function displayLocationList(testLocations) {
     htmlTags += `            
       <div class="site-info">
         <p class="title"><strong> ${
-          testLocations[i].title.split(":")[1]
+          testLocations[i]?.title?.split(":")[1] || "no title"
         }</strong></p>
         <p class="phone-number"> ${
-          testLocations[i].contacts[0].phone[0].value
+          testLocations[i]?.contacts?.[0]?.phone?.[0].value || "no phone number"
         }</p>
       </div>`;
   }
@@ -389,11 +385,17 @@ function renderMarkers(testLocations) {
         var linkTitle = testLocations[i].title.split(":")[1]; //remove COVID from test location title
         var linkHref = testLocations[i].contacts[0].www[0]["value"];
 
-        let details = new google.maps.InfoWindow({
+        // close any open infoWindow
+        if (infoWindow) {
+          infoWindow.close();
+        }
+
+        infoWindow = new google.maps.InfoWindow({
           content: `<a target="blank" href=" ${linkHref} ">  ${linkTitle} </a>`,
         });
 
-        details.open(map, this);
+        // only dispaly the infoWindow on click for that marker
+        infoWindow.open(map, this);
 
         toggleBounce(i);
       }
@@ -417,7 +419,6 @@ function codeAddress(address) {
     //get user Coordinates from address and store them
     userLat = results[0].geometry.location.lat();
     userLon = results[0].geometry.location.lng();
-    //console.log("lat/lng from function" + userLat + userLon);
 
     console.log("function running to get address");
     console.log(address);
@@ -506,8 +507,6 @@ function displaySavedLocations() {
   if (localStorage.getItem("locations")) {
     //if so, parse through anything in local stoarage and save it into the array of past addresses
     pastAddress = JSON.parse(localStorage.getItem("locations"));
-    console.log("There is something in local storage.");
-    console.log(pastAddress);
 
     //turn the display of the past markers on
     $("#past-locations").show();
@@ -538,36 +537,33 @@ function displaySavedLocations() {
 //CHECK STORAGE - when the pages load, run the function to check local storage and display any saved locations
 displaySavedLocations();
 
-
-//REDIRECT SECTION 
+//REDIRECT SECTION
 
 //SEARCH BAR FROM OTHER PAGES
-//add event listener to search bars on the nav bars on the side pages   
+//add event listener to search bars on the nav bars on the side pages
 $("#side-page-button").on("click", function () {
   //redirect to the index.html with a search query.
   //console.log("side-page button was clicked.")
 
   //grab and store value entered from input form
-  let redirectZip = $('#side-page-input').val();
+  let redirectZip = $("#side-page-input").val();
 
   console.log(redirectZip);
   //console.log (window.location.href)
 
-  //redirect to the homepage with the zip query added on the end as a search string 
-  window.location.href = 'index.html' + '?search=' + redirectZip
- 
+  //redirect to the homepage with the zip query added on the end as a search string
+  window.location.href = "index.html" + "?search=" + redirectZip;
 });
 
-
 //CHECK URL FOR SEARCH QUERY, on page load
-function checkQueryURL(){
+function checkQueryURL() {
   //check to see if there is a query at the end of the URL
-  if (document.location.search){
+  if (document.location.search) {
     //console.log("there is a query in the URL" + document.location.search)
 
     //if so, get the address off the end of search string
-    let address = document.location.search.split('=')[1];
-    console.log(address)
+    let address = document.location.search.split("=")[1];
+    console.log(address);
 
     //pass the address to the geocoder
     codeAddress(address);
