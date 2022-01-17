@@ -294,6 +294,10 @@ function mapMaker() {
       handleLocationError(false, infoWindow, map.getCenter());
     }
   });
+
+  //CHECK URL FOR SEARCH QUERY, 
+  //once the map is loaded, see if there is a search query from a side page 
+  checkQueryURL();
 }
 
 //If geolocation fails
@@ -558,26 +562,19 @@ $("#side-page-button").on("click", function () {
 function checkQueryURL(){
   //check to see if there is a query at the end of the URL
   if (document.location.search){
-    console.log("there is a query in the URL" + document.location.search)
+    //console.log("there is a query in the URL" + document.location.search)
 
     //if so, get the address off the end of search string
     let address = document.location.search.split('=')[1];
     console.log(address)
 
-    //make sure the map is drawn first
-
+    //pass the address to the geocoder
+    //codeAddress(address);
 
     //pass the address to the functions to display the new sites and store in local storage
-
     storeAddress(address);
     displayNewLocation(address);
-
   }
 }
-
-//CHECK URL FOR SEARCH QUERY, on page load
-checkQueryURL();
-
-
 
 //END OF REDIRECT SECTION
