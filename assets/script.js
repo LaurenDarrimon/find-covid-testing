@@ -12,7 +12,7 @@ $(document).foundation();
 
 //this binds the Parsley library to the form
 $("#form").parsley();
-// $("#side-form").parsley();
+//$(".form").parsley();
 
 //test COVID api
 let covidApiKey = "K39YR7g51qETSXocQ0uyEDBxgxXWFZSILwgtqcrNaP8";
@@ -556,7 +556,7 @@ $("#side-page-button").on("click", function () {
   window.location.href = "index.html" + "?search=" + redirectZip;
 });
 
-//CHECK URL FOR SEARCH QUERY, on page load
+//CHECK URL FOR SEARCH QUERY, after the mapMaker fxn finishes running 
 function checkQueryURL() {
   //check to see if there is a query at the end of the URL
   if (document.location.search) {
