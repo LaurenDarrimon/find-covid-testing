@@ -12,7 +12,12 @@ $(document).foundation();
 
 //this binds the Parsley library to the form
 $("#form").parsley();
-//$(".form").parsley();
+
+$("#side-form").parsley();
+$(".loading-container").hide();
+
+
+
 
 //test COVID api
 let covidApiKey = "K39YR7g51qETSXocQ0uyEDBxgxXWFZSILwgtqcrNaP8";
@@ -258,6 +263,7 @@ function mapMaker() {
 
   const showCurrentLocation = document.getElementById("my-location");
   showCurrentLocation.addEventListener("click", () => {
+    $(".loading-container").show(); //show loading spinner while fetching results
     if (navigator.geolocation) {
       //close the modal when popup appears to ask user to share location
       $(".reveal").foundation("close");
@@ -277,6 +283,7 @@ function mapMaker() {
           // console.log("current user lat/lng " + userLat + userLon);
           map.setCenter(pos);
           //mark current location on map
+
           var marker = new google.maps.Marker({
             map: map,
             position: pos,
@@ -284,6 +291,7 @@ function mapMaker() {
           });
 
           getCovidData();
+          $(".loading-container").hide(); ////hide loading spinner while displaying results
         },
         () => {
           handleLocationError(true, infoWindow, map.getCenter());
@@ -309,6 +317,8 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
       ? "Error: The Geolocation service failed."
       : "Error: Your browser doesn't support geolocation."
   );
+  // hide spinner when geolocation location service failed
+  $(".loading-container").hide();
   infoWindow.open(map);
   getCovidData();
 }
