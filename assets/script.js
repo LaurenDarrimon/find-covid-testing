@@ -12,8 +12,13 @@ $(document).foundation();
 
 //this binds the Parsley library to the form
 $("#form").parsley();
+
 $("#side-form").parsley();
 $(".loading-container").hide();
+
+
+
+
 //test COVID api
 let covidApiKey = "K39YR7g51qETSXocQ0uyEDBxgxXWFZSILwgtqcrNaP8";
 let covidAppId = "ikc0ro0Fv33Mt3V90p6Y";
@@ -498,10 +503,11 @@ $("#search-zip").on("click", function () {
 
   //console.log('THIS IS WHAT ADDRESS GETS PASSED TO GEOCODE')
   //console.log (address)
-
+  if ($("#zip-text").parsley().validate() == true) {
   codeAddress(address);
   storeAddress(address);
   displayNewLocation(address);
+  }
 });
 
 //CHECK STORAGE -
@@ -560,7 +566,7 @@ $("#side-page-button").on("click", function () {
   window.location.href = "index.html" + "?search=" + redirectZip;
 });
 
-//CHECK URL FOR SEARCH QUERY, on page load
+//CHECK URL FOR SEARCH QUERY, after the mapMaker fxn finishes running 
 function checkQueryURL() {
   //check to see if there is a query at the end of the URL
   if (document.location.search) {
