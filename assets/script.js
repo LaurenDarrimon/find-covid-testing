@@ -385,11 +385,17 @@ function renderMarkers(testLocations) {
         var linkTitle = testLocations[i].title.split(":")[1]; //remove COVID from test location title
         var linkHref = testLocations[i].contacts[0].www[0]["value"];
 
-        let details = new google.maps.InfoWindow({
+        // close any open infoWindow
+        if (infoWindow) {
+          infoWindow.close();
+        }
+
+        infoWindow = new google.maps.InfoWindow({
           content: `<a target="blank" href=" ${linkHref} ">  ${linkTitle} </a>`,
         });
 
-        details.open(map, this);
+        // only dispaly the infoWindow on click for that marker
+        infoWindow.open(map, this);
 
         toggleBounce(i);
       }
