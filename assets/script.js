@@ -12,7 +12,7 @@ $(document).foundation();
 
 //this binds the Parsley library to the form
 $("#form").parsley();
-$("#side-form").parsley();
+// $("#side-form").parsley();
 
 //test COVID api
 let covidApiKey = "K39YR7g51qETSXocQ0uyEDBxgxXWFZSILwgtqcrNaP8";
