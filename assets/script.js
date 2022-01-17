@@ -13,12 +13,22 @@ $(document).foundation();
 //this binds the Parsley library to the form
 $("#form").parsley();
 <<<<<<< HEAD
+<<<<<<< HEAD
 $("#side-form").parsley();
 $(".loading-container").hide();
 =======
 //$(".form").parsley();
 
 >>>>>>> cb4b9662f42bf095eff3a2163c0faf1f534daba6
+=======
+
+$("#side-form").parsley();
+$(".loading-container").hide();
+
+
+
+
+>>>>>>> 7afc5aed9ee5f77175f5b32a1ba52c9e227930b8
 //test COVID api
 let covidApiKey = "K39YR7g51qETSXocQ0uyEDBxgxXWFZSILwgtqcrNaP8";
 let covidAppId = "ikc0ro0Fv33Mt3V90p6Y";
