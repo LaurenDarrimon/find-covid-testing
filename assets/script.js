@@ -14,6 +14,7 @@ $(document).foundation();
 $("#form").parsley();
 
 $("#side-form").parsley();
+$("#form").parsley();
 $(".loading-container").hide();
 
 //test COVID api
@@ -516,7 +517,7 @@ function displaySavedLocations() {
     //if so, parse through anything in local stoarage and save it into the array of past addresses
     pastAddress = JSON.parse(localStorage.getItem("locations"));
 
-    //turn the display of the past markers on
+    //turn the div that displays the past markers to show
     $("#past-locations").show();
 
     //loop through the array of saved locations
@@ -550,10 +551,11 @@ displaySavedLocations();
 //SEARCH BAR FROM OTHER PAGES
 //add event listener to search bars on the nav bars on the side pages
 $("#side-page-button").on("click", function () {
-  //redirect to the index.html with a search query.
-  //console.log("side-page button was clicked.")
-
+    //if the form is valid acording to parsely 
     if ($("#side-page-input").parsley().validate() == true){
+      //redirect to the index.html with a search query.
+      //console.log("side-page button was clicked.")
+
       //grab and store value entered from input form
       let redirectZip = $("#side-page-input").val();
 
