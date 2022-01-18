@@ -40,7 +40,7 @@ body {
 
 /* SITE LIST DISPLAY BOX on MOBILE */
 #box { 
-    z-index: 90; 
+    z-index: 100; 
     background-color: var(--blue);
     border: solid 10px white;
     color: black;

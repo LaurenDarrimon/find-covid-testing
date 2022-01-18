@@ -1,60 +1,63 @@
 :root {
-    --white: #f5f5f5;
-    --black: #000;
-    --tan: #f3c9a7;
-    --orange: #d2975c;
-    --blue: #9fb9c0;
-    --green: #c8b953;
-    --rose: #d38681;
-  }
+  --white: #f5f5f5;
+  --black: #000;
+  --tan: #f3c9a7;
+  --orange: #d2975c;
+  --blue: #9fb9c0;
+  --green: #c8b953;
+  --rose: #d38681;
+}
   
-  html,
-  body {
-    margin: 0;
-    height: 100%;
-    box-sizing: border-box;
-  }
+html,
+body {
+  margin: 0;
+  height: 100%;
+  box-sizing: border-box;
+}
   
-  .top-bar {
-    position: relative;
-    background-color: var(--green) !important;
-    color: var--(white) !important;
-  }
+.top-bar {
+  position: relative;
+  background-color: var(--green) !important;
+  color: var--(white) !important;
+}
   
-  .menu,
-  .menu li,
-  .menu li h1 {
-    background-color: var(--green) !important;
-    color: var(--white);
-  }
+.menu,
+.menu li,
+.menu li h1 {
+  background-color: var(--green) !important;
+  color: var(--white);
+}
   
-  button {
-    background-color: var(--rose);
-    color: var(--white);
-    padding: 20px;
-    margin: 20px;
-  }
+button {
+  background-color: var(--rose);
+  color: var(--white);
+  padding: 20px;
+  margin: 20px;
+}
   
-  button:hover {
-    box-shadow: 0px 0px 20px white;
-  }
+button:hover {
+  box-shadow: 0px 0px 20px white;
+}
 
-  .cell {
-      padding:40px;
-  }
+.cell {
+  padding:40px;
+}
 
-  .card {
-      margin:40px;
-  }
+.card {
+  margin:40px;
+}
 
-  .dev-info{
-      background-color: var(--green);
-  }
+.dev-info{
+  background-color: var(--green);
+}
 
-  .team-info{
-      background-color: var(--blue);
-  }
+.team-info{
+  background-color: var(--blue);
+}
   
+#test-graphic-button{
+  width:250px;
+}
   
 
  
