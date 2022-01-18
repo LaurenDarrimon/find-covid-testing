@@ -1,0 +1,278 @@
+:root {
+    --tan: #f3c9a7;
+    --orange: #d2975c;
+    --green: #c8b953;
+    --blue: #9fb9c0;
+    --rose: #d38681;
+    --white: #f5f5f5;
+    --black: #000;
+}
+  
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* MOBILE FIRST for positioning & layout*/
+.top-bar {
+    z-index: 90;
+    position: relative;
+    background-color: var(--green) !important;
+    color: var(--white) !important;
+}
+  
+.menu,
+.menu li,
+.menu li h1 {
+    background-color: var(--green) !important;
+    color: var(--white);
+}
+
+
+/* GOOGLE MAP ON MOBILE*/
+#map {
+    height: 100%;
+    position:static;
+    z-index: 0;
+}
+
+/* SITE LIST DISPLAY BOX */
+#box { 
+    z-index: 90;
+    float: left;
+    background-color: var(--blue);
+    border: solid 10px white;
+    color: black;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: none;  /* initial display set to none, will show when locations are populated*/
+
+    /* MOBILE POSITION & DISPLAY - will change on larger screens*/
+    width: 100vw;
+    height: 60%;
+    position: static;
+    margin: 0;
+}
+
+
+
+/* Adjust the size of previous locations panel on small devices */
+#past-locations {
+    display: none;
+    z-index: 90;
+    background-color: var(--blue);
+    border: solid 10px white;
+    color: black;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    /* MOBILE POSITION & DISPLAY - will change on larger screens*/
+    width: 100vw;
+    height: 30%;
+    position: static;
+    margin: 0;
+}
+
+
+  
+  
+#get-tested-button {
+  border: none;
+  border-radius: 10px;
+  width: 100px;
+  height: 100px;
+  transform: translate(0, -30%);
+}
+
+.testing-img {
+    width: 100px;
+    height: 100px;
+    border: 5px solid #d38681;
+    border-radius: 5px;
+}
+
+
+  
+#location-search-box {
+    background-color: var(--blue);
+    color: var(--white);
+    border: 25px solid var(--green);
+    border-radius: 25px;
+    padding: 30px;
+    width: 100%;
+    height: 100%;
+}
+  
+#location-search-wrapper {
+    height: calc(100% - 150px);
+}
+  
+ 
+  
+.site-info {
+    z-index: 90;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: block;
+    border: dotted 2px white;
+    margin-bottom: 5%;
+    padding: 3px;
+}
+  
+  
+button {
+    background-color: var(--rose);
+    color: var(--white);
+    padding: 20px;
+    margin: 20px;
+}
+  
+button:hover {
+    box-shadow: 0px 0px 20px white;
+}
+
+#location-search-box {
+    z-index: 100;
+    position: relative;
+}
+  
+.custom-map-control-button {
+    z-index: 100;
+    position: relative;
+}
+
+  
+#my-location {
+    margin: 0 auto;
+    display: block;
+    font-size: 17px;
+  }
+  
+  #enter-location {
+    text-align: center;
+  }
+  
+  /* This button is a central focus of our app, styling to accentuate it*/
+  #get-tested-button {
+    border: 25px solid #d38681;
+    border-radius: 15px;
+    background-image: url('assets/images/test-graphic.png');
+    transform: translate(0, -30%);
+  }
+  
+  /* add shadow to to outer picture on hover*/
+  #get-tested-button img:hover {
+    box-shadow: 0px 0px 20px white;
+  }
+  /* add highlit to inner picture on hover*/
+  #get-tested-button:hover {
+    box-shadow: 10px 10px 5px grey;
+  }
+  
+  .loading-container {
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  /* loading spinner*/
+  .loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid blue;
+    border-right: 16px solid green;
+    border-bottom: 16px solid red;
+    width: 100px;
+    height: 100px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+  
+    z-index: 100;
+  }
+  
+  @-webkit-keyframes spin {
+    0% {
+      -webkit-transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+
+  
+  /* MEDIUM SCREENS  (tablets, etc.)  */
+  @media (min-width: 40em) {
+
+
+    #map {
+        position: absolute;
+        top: 0;
+        bottom: -200px;
+        left: 0;
+        right: 0;
+    }
+
+    #box {
+        height: 60%;
+        width: 20%; 
+        position: relative;
+        margin: 30px;
+    }
+
+    #past-locations {
+    
+        float: right;
+        position: relative;
+        width: 30%;
+        height: 60%;
+        margin: 30px;
+    }
+
+
+
+  }
+ 
+  
+
+
+  
+  /* LARGE SCREENS */
+  @media (min-width: 64em) {
+    #past-locations {
+      width: 30%;
+      height: 40%;
+    }
+
+    /* #box {
+      width: 40%;
+      height: 40%;
+      clear: both;
+    } */
+  }
+
+  
+ 
+ 
+  
