@@ -13,6 +13,7 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 /* MOBILE FIRST for positioning & layout*/
@@ -30,16 +31,14 @@ body {
     color: var(--white);
 }
 
-
 /* GOOGLE MAP ON MOBILE*/
 #map {
-    height: 90%;
+    height: 60%;
     position:static;
     z-index: 0;
 }
 
-
-/* SITE LIST DISPLAY BOX */
+/* SITE LIST DISPLAY BOX on MOBILE */
 #box { 
     z-index: 90; 
     background-color: var(--blue);
@@ -57,9 +56,7 @@ body {
     margin: 0;
 }
 
-
-
-/* PAST LOCATIONS BUTTONS PANEL*/
+/* PAST LOCATIONS BUTTONS PANEL */
 #past-locations {
     display: none;
     z-index: 90;
@@ -74,16 +71,15 @@ body {
     width: 100vw;
     height: 30%;
     position: static;
-    margin: 0;
+    margin: 0px;
 }
 
-  
+
+/*style main Find a Test BUTTON with graphic image*/
 #get-tested-button {
-  border: none;
-  border-radius: 10px;
-  width: 100px;
-  height: 100px;
-  transform: translate(0, -30%);
+    width: 100px;
+    height: 100px;
+    transform: translate(0, -30%);
 }
 
 .testing-img {
@@ -91,10 +87,16 @@ body {
     height: 100px;
     border: 5px solid #d38681;
     border-radius: 5px;
+    transform: translate(0, -30%);
 }
 
+/* add highlit to inner picture on hover*/
+#get-tested-button img:hover {
+    box-shadow: 0px 0px 20px white;
+}
+ 
 
-  
+/* MODAL FOR STATE / ZIP SEARCH */  
 #location-search-box {
     background-color: var(--blue);
     color: var(--white);
@@ -109,7 +111,6 @@ body {
     height: calc(100% - 150px);
 }
   
- 
   
 .site-info {
     z-index: 90;
@@ -121,7 +122,6 @@ body {
     margin-bottom: 5%;
     padding: 3px;
 }
-  
   
 button {
     background-color: var(--rose);
@@ -143,36 +143,19 @@ button:hover {
     z-index: 100;
     position: relative;
 }
-
-  
+ 
 #my-location {
     margin: 0 auto;
     display: block;
     font-size: 17px;
-  }
+}
   
-  #enter-location {
+#enter-location {
     text-align: center;
-  }
+}
   
-  /* This button is a central focus of our app, styling to accentuate it*/
-  #get-tested-button {
-    border: 25px solid #d38681;
-    border-radius: 15px;
-    background-image: url('assets/images/test-graphic.png');
-    transform: translate(0, -30%);
-  }
-  
-  /* add shadow to to outer picture on hover*/
-  #get-tested-button img:hover {
-    box-shadow: 0px 0px 20px white;
-  }
-  /* add highlit to inner picture on hover*/
-  #get-tested-button:hover {
-    box-shadow: 10px 10px 5px grey;
-  }
-  
-  .loading-container {
+
+.loading-container {
     width: 100vw;
     height: 100vh;
     z-index: 100;
@@ -183,10 +166,10 @@ button:hover {
     align-items: center;
     display: flex;
     background-color: rgba(0, 0, 0, 0.8);
-  }
+}
   
-  /* loading spinner*/
-  .loader {
+/* loading spinner*/
+.loader {
     border: 16px solid #f3f3f3;
     border-radius: 50%;
     border-top: 16px solid blue;
@@ -198,30 +181,30 @@ button:hover {
     animation: spin 2s linear infinite;
   
     z-index: 100;
-  }
+}
   
-  @-webkit-keyframes spin {
+@-webkit-keyframes spin {
     0% {
       -webkit-transform: rotate(0deg);
     }
     100% {
       -webkit-transform: rotate(360deg);
     }
-  }
+}
   
-  @keyframes spin {
+@keyframes spin {
     0% {
       transform: rotate(0deg);
     }
     100% {
       transform: rotate(360deg);
     }
-  }
+}
 
 
   
-  /* MEDIUM SCREENS  (tablets, etc.)  */
-  @media (min-width: 40em) {
+/* MEDIUM SCREENS  (tablets, etc.)  */
+@media (min-width: 40em) {
 
     /* set map as background */
     #map {
@@ -251,23 +234,26 @@ button:hover {
         margin: 30px;
     }
 
-  }
- 
+    /* make larger button on larger screens*/
+    #get-tested-button {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .testing-img {
+        width: 150px;
+        height: 150px;
+        border: 15px solid #d38681;
+        border-radius: 10px;
+    }
+}
   
-
-
-  
-  /* LARGE SCREENS */
-  @media (min-width: 64em) {
-
+/* LARGE SCREENS */
+@media (min-width: 64em) {
     #box {
         width: 20%; 
     }
-
-
-  }
-
-  
- 
- 
-  
+    #past-locations {
+        width: 20%;
+    }
+}

@@ -127,11 +127,10 @@ button:hover {
 }
 
 /* This button is a central focus of our app, styling to accentuate it*/
-
 #get-tested-button {
   border: 25px solid #d38681;
   border-radius: 15px;
-  background-image: "url('assets/images/test-graphic.png')";
+  background-image: "url('images/test-graphic.png')";
   transform: translate(0, -30%);
 }
 

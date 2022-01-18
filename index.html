@@ -20,9 +20,6 @@
       crossorigin="anonymous"
     />
 
-    <!-- PARSLEY js -->
-    <!-- <script src="http://parsleyjs.org/dist/parsley.js"></script> -->
-
     <!-- CUSTOM css-->
     <link rel="stylesheet" href="assets/responsive.css" />
   </head>
@@ -46,7 +43,7 @@
       <ul class="menu">
         <li>
 
-          <div data-parsley-validate class="form">
+          <div class="form">
             <input type="number" placeholder="Search by Zip" id="zip-text" data-parsley-type="integer"
             data-parsley-length="[5, 5]"/>
           </div>
@@ -157,7 +154,7 @@
 
 
 
-        <div data-parsley-validate id="form">
+        <div id="form">
           <input type="number" placeholder="enter zip code" id="zip" data-parsley-type="integer"
             data-parsley-length="[5, 5]" />
           <button class="button" id="zip-location">Show</button>
@@ -184,8 +181,6 @@
 
     <!-- CUSTOM JS-->
     <script src="assets/script.js"></script>
-
-  
 
 
 
