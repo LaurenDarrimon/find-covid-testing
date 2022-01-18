@@ -33,15 +33,15 @@ body {
 
 /* GOOGLE MAP ON MOBILE*/
 #map {
-    height: 100%;
+    height: 90%;
     position:static;
     z-index: 0;
 }
 
+
 /* SITE LIST DISPLAY BOX */
 #box { 
-    z-index: 90;
-    float: left;
+    z-index: 90; 
     background-color: var(--blue);
     border: solid 10px white;
     color: black;
@@ -59,7 +59,7 @@ body {
 
 
 
-/* Adjust the size of previous locations panel on small devices */
+/* PAST LOCATIONS BUTTONS PANEL*/
 #past-locations {
     display: none;
     z-index: 90;
@@ -77,8 +77,6 @@ body {
     margin: 0;
 }
 
-
-  
   
 #get-tested-button {
   border: none;
@@ -225,32 +223,33 @@ button:hover {
   /* MEDIUM SCREENS  (tablets, etc.)  */
   @media (min-width: 40em) {
 
-
+    /* set map as background */
     #map {
-        position: absolute;
-        top: 0;
+        height:100%;
+        position: absolute !important;
+        top: 0 !important;
         bottom: -200px;
         left: 0;
         right: 0;
     }
 
+    /* move site info panel on top of the map */
     #box {
         height: 60%;
-        width: 20%; 
-        position: relative;
+        width: 30%; 
+        position: relative !important;
         margin: 30px;
+        float: left !important;
     }
 
+    /* move past location panels on top of the map */
     #past-locations {
-    
-        float: right;
-        position: relative;
+        float: right !important;
+        position: relative !important;
         width: 30%;
         height: 60%;
         margin: 30px;
     }
-
-
 
   }
  
@@ -260,16 +259,12 @@ button:hover {
   
   /* LARGE SCREENS */
   @media (min-width: 64em) {
-    #past-locations {
-      width: 30%;
-      height: 40%;
+
+    #box {
+        width: 20%; 
     }
 
-    /* #box {
-      width: 40%;
-      height: 40%;
-      clear: both;
-    } */
+
   }
 
   
