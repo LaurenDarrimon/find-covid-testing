@@ -42,7 +42,7 @@ Once the users location is determined, they will be able to view test site infor
 
 * The map will display markers for each test site near the user. Each marker will display information on the test site. There will also be a side panel that will display the 10 closest test sites and their information.
 ![Markers & test sites Gif](/assets/images/READMEgifs/markersandsidepanel.gif)
-![code](/assets/images/READMEgifs:code/animatedmapmarkers.png)
+![code](/assets/images/READMEgifs/animatedmapmarkers.png)
 
 * The user can view a list of past locations they have searched, which persists after reload
 ![Local Storage Gif](/assets/images/READMEgifs/localstg-ogsize.gif)
