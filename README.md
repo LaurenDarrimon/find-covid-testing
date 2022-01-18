@@ -37,20 +37,20 @@ Once the users location is determined, they will be able to view test site infor
 
 ## Demo
 * The site will fetch the users location automatically.
-![Fetch Location Gif](assets/images/README gifs:code/fetchlocation.gif)
-![code](assets/images/README gifs:code/1.searchcurrentlocation.png)
+![Fetch Location Gif](/assets/images/READMEgifs/fetchlocation.gif)
+![code](/assets/images/READMEgifs/1.searchcurrentlocation.png)
 
 * The map will display markers for each test site near the user. Each marker will display information on the test site. There will also be a side panel that will display the 10 closest test sites and their information.
-![Markers & test sites Gif](assets/images/README gifs:code/markersandsidepanel.gif)
-![code](assets/images/README gifs:code/animatedmapmarkers.png)
+![Markers & test sites Gif](/assets/images/READMEgifs/markersandsidepanel.gif)
+![code](/assets/images/READMEgifs/animatedmapmarkers.png)
 
 * The user can view a list of past locations they have searched, which persists after reload
-![Local Storage Gif](assets/images/README gifs:code/localstg-ogsize.gif)
-![code](assets/images/README gifs:code/pastlocations.png)
+![Local Storage Gif](/assets/images/READMEgifs/localstg-ogsize.gif)
+![code](/assets/images/READMEgifs/pastlocations.png)
 
 * The site will be mobile responsive.
-![Mobile Responsiveness](assets/images/README gifs:code/mobilegif.gif)
-![code](assets/images/README gifs:code/mobileresponsive.png)
+![Mobile Responsiveness](/assets/images/READMEgifs/mobilegif.gif)
+![code](/assets/images/READMEgifs/mobileresponsive.png)
 
 
 ## Authors
