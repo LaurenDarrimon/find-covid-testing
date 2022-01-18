@@ -251,7 +251,7 @@ function mapMaker() {
   //RENDER INITIAL SEARCH BUTTON
   const locationBottomBtn = document.createElement("div"); //displaying a div with an image for a button
   locationBottomBtn.innerHTML =
-    '<img src="assets/images/test-graphic.png" class="testing-img" width="150px" height="150px">';
+    '<img src="assets/images/test-graphic.png" class="testing-img" width="90px" height="90px">';
   locationBottomBtn.setAttribute("id", "get-tested-button"); //add class for addition styling in css
   locationBottomBtn.classList.add("div");
   locationBottomBtn.dataset.open = "my-modal";

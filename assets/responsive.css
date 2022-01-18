@@ -1,0 +1,259 @@
+:root {
+    --tan: #f3c9a7;
+    --orange: #d2975c;
+    --green: #c8b953;
+    --blue: #9fb9c0;
+    --rose: #d38681;
+    --white: #f5f5f5;
+    --black: #000;
+}
+  
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* MOBILE FIRST for positioning & layout*/
+.top-bar {
+    z-index: 90;
+    position: relative;
+    background-color: var(--green) !important;
+    color: var(--white) !important;
+}
+  
+.menu,
+.menu li,
+.menu li h1 {
+    background-color: var(--green) !important;
+    color: var(--white);
+}
+
+/* GOOGLE MAP ON MOBILE*/
+#map {
+    height: 60%;
+    position:static;
+    z-index: 0;
+}
+
+/* SITE LIST DISPLAY BOX on MOBILE */
+#box { 
+    z-index: 90; 
+    background-color: var(--blue);
+    border: solid 10px white;
+    color: black;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: none;  /* initial display set to none, will show when locations are populated*/
+
+    /* MOBILE POSITION & DISPLAY - will change on larger screens*/
+    width: 100vw;
+    height: 60%;
+    position: static;
+    margin: 0;
+}
+
+/* PAST LOCATIONS BUTTONS PANEL */
+#past-locations {
+    display: none;
+    z-index: 90;
+    background-color: var(--blue);
+    border: solid 10px white;
+    color: black;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    /* MOBILE POSITION & DISPLAY - will change on larger screens*/
+    width: 100vw;
+    height: 30%;
+    position: static;
+    margin: 0px;
+}
+
+
+/*style main Find a Test BUTTON with graphic image*/
+#get-tested-button {
+    width: 100px;
+    height: 100px;
+    transform: translate(0, -30%);
+}
+
+.testing-img {
+    width: 100px;
+    height: 100px;
+    border: 5px solid #d38681;
+    border-radius: 5px;
+    transform: translate(0, -30%);
+}
+
+/* add highlit to inner picture on hover*/
+#get-tested-button img:hover {
+    box-shadow: 0px 0px 20px white;
+}
+ 
+
+/* MODAL FOR STATE / ZIP SEARCH */  
+#location-search-box {
+    background-color: var(--blue);
+    color: var(--white);
+    border: 25px solid var(--green);
+    border-radius: 25px;
+    padding: 30px;
+    width: 100%;
+    height: 100%;
+}
+  
+#location-search-wrapper {
+    height: calc(100% - 150px);
+}
+  
+  
+.site-info {
+    z-index: 90;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: block;
+    border: dotted 2px white;
+    margin-bottom: 5%;
+    padding: 3px;
+}
+  
+button {
+    background-color: var(--rose);
+    color: var(--white);
+    padding: 20px;
+    margin: 20px;
+}
+  
+button:hover {
+    box-shadow: 0px 0px 20px white;
+}
+
+#location-search-box {
+    z-index: 100;
+    position: relative;
+}
+  
+.custom-map-control-button {
+    z-index: 100;
+    position: relative;
+}
+ 
+#my-location {
+    margin: 0 auto;
+    display: block;
+    font-size: 17px;
+}
+  
+#enter-location {
+    text-align: center;
+}
+  
+
+.loading-container {
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+  
+/* loading spinner*/
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid blue;
+    border-right: 16px solid green;
+    border-bottom: 16px solid red;
+    width: 100px;
+    height: 100px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+  
+    z-index: 100;
+}
+  
+@-webkit-keyframes spin {
+    0% {
+      -webkit-transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
+}
+  
+@keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+}
+
+
+  
+/* MEDIUM SCREENS  (tablets, etc.)  */
+@media (min-width: 40em) {
+
+    /* set map as background */
+    #map {
+        height:100%;
+        position: absolute !important;
+        top: 0 !important;
+        bottom: -200px;
+        left: 0;
+        right: 0;
+    }
+
+    /* move site info panel on top of the map */
+    #box {
+        height: 60%;
+        width: 30%; 
+        position: relative !important;
+        margin: 30px;
+        float: left !important;
+    }
+
+    /* move past location panels on top of the map */
+    #past-locations {
+        float: right !important;
+        position: relative !important;
+        width: 30%;
+        height: 60%;
+        margin: 30px;
+    }
+
+    /* make larger button on larger screens*/
+    #get-tested-button {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .testing-img {
+        width: 150px;
+        height: 150px;
+        border: 15px solid #d38681;
+        border-radius: 10px;
+    }
+}
+  
+/* LARGE SCREENS */
+@media (min-width: 64em) {
+    #box {
+        width: 20%; 
+    }
+    #past-locations {
+        width: 20%;
+    }
+}
