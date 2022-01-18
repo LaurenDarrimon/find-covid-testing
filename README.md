@@ -13,9 +13,7 @@
 ## Description
 
 As of January 2022, the US is seeing the highest Covid levels on record and tests are in demand now more than ever. We wanted to give users a place to quickly and easily find Covid testing sites in their area. It was our goal to make the website interface simple, clutter-free and easy to use. 
-Our app currently works within the United States. It uses the Google Maps API to retrieve the users location and communicates that to the Here Developer API which provides detailed information about the testing sites. 
-
-The user can either allow the browser to fetch their current location, or they can choose to enter either their state as a whole, or their zip code for more personalized results. 
+Our app currently works within the United States. It uses the Google Maps API to retrieve the users location and communicates that to the Here Developer API which provides detailed information about the testing sites.  
 Once the users location is determined, they will be able to view test site information either on the map directly or on the side panel that will appear. Both options will have the name of the test site, as well as an approximate location and phone number.
 
 
@@ -24,8 +22,6 @@ Once the users location is determined, they will be able to view test site infor
 * [Map-A-Test: Find a Covid Testing Site Near You](https://laurendarrimon.github.io/find-covid-testing/)
 ![Image of Deployed Site](assets/images/deployedsite-image.png)
 
-## Demo
-![Gif of Deployed Site](assets/images/finalpage.gif)
 
 ## Technology Stack
 
@@ -37,6 +33,27 @@ Once the users location is determined, they will be able to view test site infor
 * [Parsley](https://parsleyjs.org/doc/index.html)
 * [Google Maps Api](https://developers.google.com/maps/documentation/javascript/overview)
 * [Finding COVID-19 Testing Sites API](https://developer.here.com/blog/finding-covid-19-testing-sites)
+
+
+## Demo
+* The site will fetch the users location automatically.
+![Fetch Location Gif]()
+
+* The map will display markers for each test site near the user. Each marker will display information on the test site. There will also be a side panel that will display the 10 closest test sites and their information.
+![Markers & test sites Gif]()
+
+
+* The user can view a list of past locations they have searched, which persists after reload
+![Local Storage Gif]()
+
+* The site will be mobile responsive.
+![Mobile Responsiveness]()
+
+User Story 4: 
+
+User Story 5: 
+
+
 
 
 ## Authors
