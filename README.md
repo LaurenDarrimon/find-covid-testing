@@ -69,3 +69,6 @@ Once the users location is determined, they will be able to view test site infor
 
 * [Leslie's GitHub](https://github.com/lesliejpatino)
 * [Leslie's LinkedIn](https://www.linkedin.com/in/lesliejpatino/)
+
+## License
+[MIT Open Source Software](https://choosealicense.com/licenses/mit/)
